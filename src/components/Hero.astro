@@ -37,16 +37,15 @@ import { site, whatsappLink } from "../data/site";
       </p>
     </div>
 
-    <!-- Foto profesional de Lourdes (placeholder hasta recibir la imagen real) -->
-    <div class="relative mx-auto w-full max-w-sm">
-      <div class="aspect-[4/5] overflow-hidden rounded-2xl border border-gold/30 bg-ink-soft">
-        <img
-          src="/images/lourdes.jpg"
-          alt={`${site.nombre}, ${site.rol} en ${site.franquicia}`}
-          class="h-full w-full object-cover"
-          onerror="this.style.display='none'; this.parentElement.classList.add('flex','items-center','justify-center'); this.parentElement.innerHTML='<span class=\'text-white/40 text-sm px-6 text-center\'>Aquí va la foto profesional de Lourdes</span>';"
-        />
-      </div>
+    <!-- Foto profesional de Lourdes (PNG con fondo transparente, flota sobre el Hero) -->
+    <div class="relative mx-auto flex w-full max-w-sm items-end justify-center self-end">
+      <div aria-hidden="true" class="absolute bottom-0 h-64 w-64 rounded-full bg-gold/10 blur-3xl"></div>
+      <img
+        src="/images/lourdes.png"
+        alt={`${site.nombre}, ${site.rol} en ${site.franquicia}`}
+        class="relative z-10 max-h-[520px] w-auto object-contain drop-shadow-2xl"
+        onerror="this.style.display='none'; const b=document.createElement('div'); b.className='relative z-10 flex aspect-[4/5] w-full max-w-xs items-center justify-center rounded-2xl border border-gold/30 bg-ink-soft'; b.innerHTML='<span class=\'text-white/40 text-sm px-6 text-center\'>Aquí va la foto de Lourdes (fondo transparente)</span>'; this.replaceWith(b);"
+      />
     </div>
   </div>
 </section>
