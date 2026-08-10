@@ -1,0 +1,39 @@
+---
+import { site } from "../data/site";
+
+const valores = [
+  { titulo: "Inteligencia", texto: "Datos de mercado reales para decisiones acertadas." },
+  { titulo: "Empatía", texto: "Escucho tu situación y trabajo a tu ritmo." },
+  { titulo: "Acción", texto: "Respuesta rápida y seguimiento hasta cerrar." },
+];
+---
+
+<section id="sobre-mi" class="bg-ink text-white">
+  <div class="section grid items-center gap-10 md:grid-cols-[0.8fr_1.2fr]">
+    <div class="mx-auto w-full max-w-xs">
+      <div class="aspect-square overflow-hidden rounded-2xl border border-gold/30 bg-ink-soft">
+        <img
+          src="/images/lourdes-2.jpg"
+          alt={site.nombre}
+          class="h-full w-full object-cover"
+          onerror="this.style.display='none'; this.parentElement.classList.add('flex','items-center','justify-center'); this.parentElement.insertAdjacentHTML('beforeend','<span class=\'text-white/40 text-sm px-6 text-center\'>Foto de Lourdes</span>');"
+        />
+      </div>
+    </div>
+    <div>
+      <p class="text-sm font-semibold uppercase tracking-widest text-gold">Sobre mí</p>
+      <h2 class="mt-2 font-display text-3xl font-bold">Hola, soy {site.nombre}</h2>
+      <p class="mt-4 text-white/80">
+        {site.rol} en {site.franquicia}. Mi propósito es ayudarte a comprar, vender o invertir en {site.ciudad} con acompañamiento real, sin presiones y con la información correcta en cada paso.
+      </p>
+      <div class="mt-8 grid gap-5 sm:grid-cols-3">
+        {valores.map((v) => (
+          <div class="rounded-xl border border-white/10 p-5">
+            <h3 class="font-display text-lg font-semibold text-gold">{v.titulo}</h3>
+            <p class="mt-1 text-sm text-white/70">{v.texto}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>

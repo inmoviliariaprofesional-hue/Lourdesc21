@@ -1,0 +1,29 @@
+---
+import { site, whatsappLink } from "../data/site";
+---
+
+<header class="sticky top-0 z-40 bg-ink/95 backdrop-blur text-white">
+  <nav class="mx-auto flex max-w-6xl items-center justify-between px-5 py-4">
+    <a href="#inicio" class="flex flex-col leading-tight">
+      <span class="font-display text-lg font-semibold text-gold">{site.nombre}</span>
+      <span class="text-[11px] uppercase tracking-widest text-white/70">{site.franquicia}</span>
+    </a>
+
+    <ul class="hidden items-center gap-7 text-sm md:flex">
+      <li><a href="#propiedades" class="hover:text-gold">Propiedades</a></li>
+      <li><a href="#compradores" class="hover:text-gold">Compradores</a></li>
+      <li><a href="#vendedores" class="hover:text-gold">Vendedores</a></li>
+      <li><a href="#sobre-mi" class="hover:text-gold">Sobre mí</a></li>
+      <li><a href="#contacto" class="hover:text-gold">Contacto</a></li>
+    </ul>
+
+    <a
+      href={whatsappLink()}
+      target="_blank"
+      rel="noopener"
+      class="rounded-full bg-gold px-4 py-2 text-sm font-semibold text-ink transition hover:bg-gold-dark"
+    >
+      WhatsApp
+    </a>
+  </nav>
+</header>

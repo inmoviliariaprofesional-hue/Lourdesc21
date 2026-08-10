@@ -1,0 +1,52 @@
+---
+import { site, whatsappLink } from "../data/site";
+---
+
+<section id="inicio" class="relative overflow-hidden bg-ink text-white">
+  <div class="mx-auto grid max-w-6xl items-center gap-10 px-5 py-20 md:grid-cols-2 md:py-28">
+    <div>
+      <p class="mb-3 text-sm font-semibold uppercase tracking-widest text-gold">
+        {site.rol} · {site.franquicia}
+      </p>
+      <h1 class="font-display text-4xl font-bold leading-tight md:text-5xl">
+        {site.tagline}
+      </h1>
+      <p class="mt-5 max-w-md text-white/80">
+        {site.descripcion}
+      </p>
+
+      <div class="mt-8 flex flex-wrap gap-3">
+        <a
+          href={whatsappLink()}
+          target="_blank"
+          rel="noopener"
+          class="rounded-full bg-gold px-6 py-3 font-semibold text-ink transition hover:bg-gold-dark"
+        >
+          Hablemos por WhatsApp
+        </a>
+        <a
+          href="#analisis"
+          class="rounded-full border border-white/30 px-6 py-3 font-semibold transition hover:border-gold hover:text-gold"
+        >
+          Análisis de mercado gratis
+        </a>
+      </div>
+
+      <p class="mt-6 text-sm text-white/60">
+        Zonas: {site.zonas.join(" · ")} — {site.ciudad}
+      </p>
+    </div>
+
+    <!-- Foto profesional de Lourdes (placeholder hasta recibir la imagen real) -->
+    <div class="relative mx-auto w-full max-w-sm">
+      <div class="aspect-[4/5] overflow-hidden rounded-2xl border border-gold/30 bg-ink-soft">
+        <img
+          src="/images/lourdes.jpg"
+          alt={`${site.nombre}, ${site.rol} en ${site.franquicia}`}
+          class="h-full w-full object-cover"
+          onerror="this.style.display='none'; this.parentElement.classList.add('flex','items-center','justify-center'); this.parentElement.innerHTML='<span class=\'text-white/40 text-sm px-6 text-center\'>Aquí va la foto profesional de Lourdes</span>';"
+        />
+      </div>
+    </div>
+  </div>
+</section>
