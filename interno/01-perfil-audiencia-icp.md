@@ -50,7 +50,7 @@ El problema de ene-jul ("mensajes que no eran de compra" + "a veces sin mensajes
 
 | Variable | Valor sugerido |
 |---|---|
-| **Ubicación** | Radio alrededor de las colonias/municipios donde opera (⚠️ PENDIENTE confirmar zona exacta con Antonio) |
+| **Ubicación** | **Jardín Balbuena (alcaldía Venustiano Carranza)** y **Tlalpan**, CDMX. Radio de ~3-5 km alrededor de cada zona + colonias colindantes. |
 | **Edad** | 28-55 |
 | **Intereses** | Crédito hipotecario, INFONAVIT, bienes raíces, mudanza, Century 21, inversión inmobiliaria |
 | **Comportamiento** | Interacción con contenido inmobiliario, "probablemente en proceso de mudanza" |
@@ -59,11 +59,21 @@ El problema de ene-jul ("mensajes que no eran de compra" + "a veces sin mensajes
 
 ---
 
+## Zonas de operación confirmadas (jul 2026)
+
+- ✅ **Jardín Balbuena — alcaldía Venustiano Carranza, CDMX** (zona residencial consolidada, cercana al aeropuerto y al centro; buen perfil de familias y primer comprador).
+- ✅ **Tlalpan, CDMX** (zona amplia y de mayor plusvalía; atrae inversionista y move-up buyer).
+- 💡 **Dato validado:** una propiedad en **Tlalpan** ya funcionó como **gancho real** que generó mensajes en redes. → Replicar ese tipo de propiedad-ancla en contenido y pauta.
+
+### SEO local a atacar en el sitio
+- "asesor inmobiliario Jardín Balbuena" / "Venustiano Carranza"
+- "casas / departamentos en venta Jardín Balbuena"
+- "asesor inmobiliario Tlalpan" / "propiedades en Tlalpan"
+
 ## Datos PENDIENTES por confirmar con Antonio (para afinar segmentación)
 
-- [ ] **Zona geográfica exacta** de operación (¿CDMX? ¿qué alcaldías/municipios? ¿Edomex?).
 - [ ] Rango de precios de las propiedades que maneja (define el nivel socioeconómico del target).
-- [ ] ¿Se enfoca más en venta, renta o ambos?
+- [ ] ¿Se enfoca más en venta, renta o ambos? *(llegan fichas técnicas)*
 - [ ] ¿Maneja inventario propio o comparte el de la oficina Grupo Mormos?
 - [ ] Tipos de propiedad (casa, depto, terreno, comercial).
 

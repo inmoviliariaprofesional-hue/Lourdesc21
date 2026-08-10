@@ -7,15 +7,22 @@
 
 ## Fase 0 — Recopilación de insumos (bloqueante para el sitio)
 
-Pendientes por parte de Antonio / Lourdes:
+Estado (actualizado jul 2026):
 
-- [ ] Fotos profesionales de Lourdes + logo Century 21 Grupo Mormos
-- [ ] Información de propiedades (fotos, precio, zona, características)
-- [ ] Zona geográfica exacta de operación
-- [ ] Confirmar enfoque (venta / renta / ambos) y rango de precios
-- [ ] ¿Cuenta de Brevo existente o se crea desde cero?
-- [ ] Confirmar cuenta/repo definitivo (`inmoviliariaprofesional-hue/Lourdesc21`)
-- [ ] Definir stack del sitio (recomendación: Astro para SEO + rendimiento en Cloudflare Pages)
+- [ ] Fotos profesionales de Lourdes + logo Century 21 Grupo Mormos *(Antonio las enviará)*
+- [ ] Información de propiedades: fichas técnicas *(Antonio las enviará; incluye propiedad de Tlalpan que ya funcionó como gancho)*
+- [x] **Zona geográfica:** Jardín Balbuena (Venustiano Carranza) y Tlalpan, CDMX
+- [ ] Confirmar enfoque (venta / renta / ambos) y rango de precios *(llegan fichas técnicas)*
+- [x] **Brevo:** se creará **cuenta nueva e independiente** para Lourdes (la existente es de Alicia). Ver nota al final.
+- [x] **Repo definitivo:** `inmoviliariaprofesional-hue/Lourdesc21`
+- [x] **Stack:** Astro + Tailwind, deploy en Cloudflare Pages
+
+---
+
+### Nota sobre Brevo (decisión)
+
+Brevo **solo permite separar clientes en verdaderas "sub-cuentas" en el plan Enterprise** (de pago). En los planes free/estándar, una cuenta = una base de contactos y un solo correo de login, y **no se puede reutilizar el mismo email en dos cuentas**. Como la cuenta actual ya está ocupada con Alicia, lo correcto es **crear una cuenta Brevo nueva e independiente para Lourdes**, idealmente con el correo corporativo `lourdes@c21grupomormos.com`. Así los contactos, remitentes, reputación de envío y estadísticas quedan 100% separados por clienta. El plan gratuito (300 envíos/día, contactos ilimitados) alcanza para arrancar.
+*Contenido reformulado para cumplimiento de licencias; fuente: [documentación de Brevo sobre sub-cuentas](https://help.brevo.com/hc/en-us/articles/9003097317138-Classic-Admin-account-What-is-sub-accounts-management).*
 
 ---
 
