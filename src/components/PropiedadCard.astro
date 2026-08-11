@@ -1,0 +1,58 @@
+---
+import type { Propiedad } from "../data/propiedades";
+import { whatsappLink } from "../data/site";
+
+interface Props {
+  p: Propiedad;
+}
+const { p } = Astro.props;
+const url = `/propiedades/${p.slug}/`;
+---
+
+<article class="group flex flex-col overflow-hidden rounded-xl border border-black/5 bg-white shadow-sm transition hover:shadow-lg">
+  <a href={url} class="relative block aspect-[4/3] overflow-hidden bg-cream">
+    <img
+      src={p.imagenes[0]}
+      alt={`${p.titulo} — foto principal`}
+      loading="lazy"
+      class="h-full w-full object-cover transition duration-300 group-hover:scale-105"
+    />
+    <span class="absolute left-3 top-3 rounded-full bg-ink px-3 py-1 text-xs font-semibold uppercase tracking-wide text-gold">
+      {p.operacion}
+    </span>
+    {p.imagenes.length > 1 && (
+      <span class="absolute bottom-3 right-3 rounded-full bg-black/60 px-2 py-1 text-xs font-medium text-white">
+        📷 {p.imagenes.length}
+      </span>
+    )}
+  </a>
+  <div class="flex flex-1 flex-col p-5">
+    <p class="text-xs uppercase tracking-wide text-ink/50">{p.tipo} · {p.colonia}, {p.alcaldia}</p>
+    <h3 class="mt-1 font-display text-lg font-semibold leading-snug">
+      <a href={url} class="hover:text-gold-dark">{p.titulo}</a>
+    </h3>
+    <p class="mt-1 font-semibold text-gold-dark">
+      {p.mostrarPrecio && p.precio ? p.precio : "Precio a consultar"}
+    </p>
+    <div class="mt-3 flex flex-wrap gap-x-3 gap-y-1 text-sm text-ink/60">
+      {p.recamaras && <span>🛏️ {p.recamaras} rec.</span>}
+      {p.banos && <span>🛁 {p.banos} baños</span>}
+      {p.estacionamientos && <span>🚗 {p.estacionamientos}</span>}
+      {p.m2Construccion && <span>📐 {p.m2Construccion} m²</span>}
+    </div>
+    <div class="mt-5 flex items-center gap-3 pt-1">
+      <a href={url} class="flex-1 rounded-full bg-ink px-4 py-2 text-center text-sm font-semibold text-white transition hover:bg-ink-soft">
+        Ver detalles
+      </a>
+      <a
+        href={whatsappLink(`Hola Lourdes, me interesa: ${p.titulo} (${p.colonia}). ¿Me das más info?`)}
+        target="_blank"
+        rel="noopener"
+        aria-label="Consultar por WhatsApp"
+        class="rounded-full border border-ink px-4 py-2 text-sm font-semibold transition hover:bg-ink hover:text-white"
+      >
+        WhatsApp
+      </a>
+    </div>
+  </div>
+</article>

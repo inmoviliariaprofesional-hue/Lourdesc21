@@ -1,0 +1,14 @@
+---
+import { site } from "../data/site";
+const year = new Date().getFullYear();
+---
+
+<footer class="bg-ink text-white/70">
+  <div class="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 px-5 py-8 text-sm md:flex-row">
+    <p>
+      <span class="font-display font-semibold text-gold">{site.nombre}</span>
+      — {site.rol}, {site.franquicia}
+    </p>
+    <p>© {year} · {site.ciudad}</p>
+  </div>
+</footer>

@@ -1,0 +1,51 @@
+---
+import { site, whatsappLink } from "../data/site";
+---
+
+<section id="inicio" class="relative overflow-hidden bg-ink text-white">
+  <div class="mx-auto grid max-w-6xl items-center gap-10 px-5 py-20 md:grid-cols-2 md:py-28">
+    <div>
+      <p class="mb-3 text-sm font-semibold uppercase tracking-widest text-gold">
+        {site.rol} · {site.franquicia}
+      </p>
+      <h1 class="font-display text-4xl font-bold leading-tight md:text-5xl">
+        {site.tagline}
+      </h1>
+      <p class="mt-5 max-w-md text-white/80">
+        {site.descripcion}
+      </p>
+
+      <div class="mt-8 flex flex-wrap gap-3">
+        <a
+          href={whatsappLink()}
+          target="_blank"
+          rel="noopener"
+          class="rounded-full bg-gold px-6 py-3 font-semibold text-ink transition hover:bg-gold-dark"
+        >
+          Hablemos por WhatsApp
+        </a>
+        <a
+          href="#analisis"
+          class="rounded-full border border-white/30 px-6 py-3 font-semibold transition hover:border-gold hover:text-gold"
+        >
+          Análisis de mercado gratis
+        </a>
+      </div>
+
+      <p class="mt-6 text-sm text-white/60">
+        📍 Especialista en Jardín Balbuena — atiendo {site.cobertura}
+      </p>
+    </div>
+
+    <!-- Foto profesional de Lourdes (PNG con fondo transparente, flota sobre el Hero) -->
+    <div class="relative mx-auto flex w-full max-w-sm items-end justify-center self-end">
+      <div aria-hidden="true" class="absolute bottom-0 h-64 w-64 rounded-full bg-gold/10 blur-3xl"></div>
+      <img
+        src="/images/lourdes.png"
+        alt={`${site.nombre}, ${site.rol} en ${site.franquicia}`}
+        class="relative z-10 max-h-[520px] w-auto object-contain drop-shadow-2xl"
+        onerror="this.style.display='none'; const b=document.createElement('div'); b.className='relative z-10 flex aspect-[4/5] w-full max-w-xs items-center justify-center rounded-2xl border border-gold/30 bg-ink-soft'; b.innerHTML='<span class=\'text-white/40 text-sm px-6 text-center\'>Aquí va la foto de Lourdes (fondo transparente)</span>'; this.replaceWith(b);"
+      />
+    </div>
+  </div>
+</section>

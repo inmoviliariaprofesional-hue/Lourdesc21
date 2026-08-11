@@ -1,0 +1,58 @@
+---
+import { whatsappLink } from "../data/site";
+---
+
+<section id="vendedores" class="section reveal grid items-center gap-10 md:grid-cols-2">
+  <div>
+    <p class="text-sm font-semibold uppercase tracking-widest text-gold-dark">Para propietarios</p>
+    <h2 class="mt-2 font-display text-3xl font-bold">¿Quieres vender o rentar tu propiedad?</h2>
+    <p class="mt-4 text-ink/70">
+      Muchos venden por debajo de su valor real por no conocer el mercado. Te ayudo a fijar el precio correcto y a difundir tu propiedad profesionalmente para vender más rápido.
+    </p>
+    <a
+      href={whatsappLink("Hola Lourdes, quiero vender/rentar mi propiedad. ¿Me ayudas?")}
+      target="_blank"
+      rel="noopener"
+      class="mt-8 inline-block rounded-full bg-ink px-6 py-3 font-semibold text-white transition hover:bg-ink-soft"
+    >
+      Quiero vender / rentar
+    </a>
+  </div>
+
+  <!-- Lead magnet: Análisis de Mercado Gratuito -->
+  <div id="analisis" class="rounded-2xl border border-gold/40 bg-cream p-8 shadow-sm">
+    <span class="text-3xl">📊</span>
+    <h3 class="mt-3 font-display text-2xl font-bold">Análisis de Mercado Gratuito</h3>
+    <p class="mt-2 text-sm text-ink/70">
+      Descubre cuánto vale realmente tu propiedad hoy, sin compromiso.
+    </p>
+
+    <!-- TODO: conectar a Brevo (form action / API) cuando la cuenta esté creada.
+         Mientras tanto, el formulario arma un mensaje de WhatsApp con los datos. -->
+    <form id="form-analisis" class="mt-6 space-y-3">
+      <input required name="nombre" placeholder="Tu nombre" class="w-full rounded-lg border border-black/10 px-4 py-2.5 text-sm outline-none focus:border-gold" />
+      <input required name="telefono" placeholder="Tu teléfono / WhatsApp" class="w-full rounded-lg border border-black/10 px-4 py-2.5 text-sm outline-none focus:border-gold" />
+      <input name="propiedad" placeholder="Zona y tipo de propiedad (ej. Casa en Tlalpan)" class="w-full rounded-lg border border-black/10 px-4 py-2.5 text-sm outline-none focus:border-gold" />
+      <button type="submit" class="w-full rounded-full bg-gold px-6 py-3 font-semibold text-ink transition hover:bg-gold-dark">
+        Solicitar mi análisis gratis
+      </button>
+    </form>
+  </div>
+</section>
+
+<script is:inline define:vars={{ waNumber: "525540012160" }}>
+  const form = document.getElementById("form-analisis");
+  form?.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const data = new FormData(form);
+    const msg =
+      `Hola Lourdes, quiero mi Análisis de Mercado Gratuito.\n` +
+      `Nombre: ${data.get("nombre")}\n` +
+      `Teléfono: ${data.get("telefono")}\n` +
+      `Propiedad: ${data.get("propiedad") || "(no especificada)"}`;
+    window.open(
+      `https://wa.me/${waNumber}?text=${encodeURIComponent(msg)}`,
+      "_blank"
+    );
+  });
+</script>

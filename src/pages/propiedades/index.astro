@@ -1,0 +1,100 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+import WhatsAppFloat from "../../components/WhatsAppFloat.astro";
+import PropiedadCard from "../../components/PropiedadCard.astro";
+import { propiedades } from "../../data/propiedades";
+import { site } from "../../data/site";
+
+const estados = [...new Set(propiedades.map((p) => p.estado))].sort();
+const tipos = [...new Set(propiedades.map((p) => p.tipo))].sort();
+---
+
+<Layout
+  title={`Propiedades en venta y renta | ${site.nombre} · ${site.franquicia}`}
+  description={`Explora ${propiedades.length} propiedades en CDMX, Estado de México y más, con Lourdes Martínez, asesora Century 21 Grupo Mormos.`}
+>
+  <Header />
+  <main>
+    <section class="bg-ink text-white">
+      <div class="mx-auto max-w-6xl px-5 py-14">
+        <h1 class="font-display text-3xl font-bold md:text-4xl">Propiedades</h1>
+        <p class="mt-3 max-w-2xl text-white/80">
+          {propiedades.length} propiedades disponibles en CDMX, Estado de México y más. Filtra por operación, estado o tipo.
+        </p>
+      </div>
+    </section>
+
+    <section class="mx-auto max-w-6xl px-5 py-10">
+      <!-- Filtros -->
+      <div class="mb-8 grid gap-4 sm:grid-cols-3">
+        <div>
+          <label class="mb-1 block text-xs font-semibold uppercase tracking-wide text-ink/50">Operación</label>
+          <select id="f-operacion" class="w-full rounded-lg border border-black/10 px-3 py-2.5 text-sm outline-none focus:border-gold">
+            <option value="">Todas</option>
+            <option value="venta">Venta</option>
+            <option value="renta">Renta</option>
+          </select>
+        </div>
+        <div>
+          <label class="mb-1 block text-xs font-semibold uppercase tracking-wide text-ink/50">Estado</label>
+          <select id="f-estado" class="w-full rounded-lg border border-black/10 px-3 py-2.5 text-sm outline-none focus:border-gold">
+            <option value="">Todos</option>
+            {estados.map((e) => <option value={e}>{e}</option>)}
+          </select>
+        </div>
+        <div>
+          <label class="mb-1 block text-xs font-semibold uppercase tracking-wide text-ink/50">Tipo</label>
+          <select id="f-tipo" class="w-full rounded-lg border border-black/10 px-3 py-2.5 text-sm outline-none focus:border-gold">
+            <option value="">Todos</option>
+            {tipos.map((t) => <option value={t}>{t}</option>)}
+          </select>
+        </div>
+      </div>
+
+      <p id="contador" class="mb-6 text-sm text-ink/60">{propiedades.length} propiedades</p>
+
+      <div id="grid" class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+        {propiedades.map((p) => (
+          <div class="prop-item" data-operacion={p.operacion} data-estado={p.estado} data-tipo={p.tipo}>
+            <PropiedadCard p={p} />
+          </div>
+        ))}
+      </div>
+
+      <p id="vacio" class="hidden py-16 text-center text-ink/50">
+        No hay propiedades con esos filtros. Prueba con otra combinación.
+      </p>
+    </section>
+  </main>
+  <Footer />
+  <WhatsAppFloat />
+
+  <script is:inline>
+    (function () {
+      const fOp = document.getElementById("f-operacion");
+      const fEs = document.getElementById("f-estado");
+      const fTi = document.getElementById("f-tipo");
+      const items = Array.from(document.querySelectorAll(".prop-item"));
+      const contador = document.getElementById("contador");
+      const vacio = document.getElementById("vacio");
+
+      function aplicar() {
+        const op = fOp.value, es = fEs.value, ti = fTi.value;
+        let visibles = 0;
+        items.forEach((el) => {
+          const ok =
+            (!op || el.dataset.operacion === op) &&
+            (!es || el.dataset.estado === es) &&
+            (!ti || el.dataset.tipo === ti);
+          el.classList.toggle("hidden", !ok);
+          if (ok) visibles++;
+        });
+        contador.textContent = visibles + (visibles === 1 ? " propiedad" : " propiedades");
+        vacio.classList.toggle("hidden", visibles !== 0);
+      }
+      [fOp, fEs, fTi].forEach((s) => s.addEventListener("change", aplicar));
+    })();
+  </script>
+</Layout>
