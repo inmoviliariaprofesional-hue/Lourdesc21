@@ -50,7 +50,7 @@ El problema de ene-jul ("mensajes que no eran de compra" + "a veces sin mensajes
 
 | Variable | Valor sugerido |
 |---|---|
-| **Ubicación** | **Jardín Balbuena (alcaldía Venustiano Carranza)** y **Tlalpan**, CDMX. Radio de ~3-5 km alrededor de cada zona + colonias colindantes. |
+| **Ubicación** | **Sede/oficina: Jardín Balbuena (Venustiano Carranza), CDMX.** Cobertura amplia: **CDMX y Estado de México** (portafolio disperso). Para pauta: empezar por zonas con propiedades reales en cartera + radio alrededor de la oficina; escalar por zona de cada listing. |
 | **Edad** | 28-55 |
 | **Intereses** | Crédito hipotecario, INFONAVIT, bienes raíces, mudanza, Century 21, inversión inmobiliaria |
 | **Comportamiento** | Interacción con contenido inmobiliario, "probablemente en proceso de mudanza" |
@@ -59,23 +59,36 @@ El problema de ene-jul ("mensajes que no eran de compra" + "a veces sin mensajes
 
 ---
 
-## Zonas de operación confirmadas (jul 2026)
+## Geografía correcta (aclaración jul 2026 — IMPORTANTE)
 
-- ✅ **Jardín Balbuena — alcaldía Venustiano Carranza, CDMX** (zona residencial consolidada, cercana al aeropuerto y al centro; buen perfil de familias y primer comprador).
-- ✅ **Tlalpan, CDMX** (zona amplia y de mayor plusvalía; atrae inversionista y move-up buyer).
-- 💡 **Dato validado:** una propiedad en **Tlalpan** ya funcionó como **gancho real** que generó mensajes en redes. → Replicar ese tipo de propiedad-ancla en contenido y pauta.
+- 🏢 **Sede / oficina:** Century 21 Grupo Mormos, **Jardín Balbuena, Venustiano Carranza, CDMX**. Es donde Lourdes es "especialista de zona" (así aparece en su banner de Facebook).
+  - Dirección: Fray Servando Teresa de Mier **830, Local A** (⚠️ la carta de presentación dice "901" — confirmar el número correcto). Tel oficina: 55 5935 7280.
+- 🗺️ **Cobertura real:** **CDMX y Estado de México.** Lourdes maneja un **portafolio disperso**, NO solo Jardín Balbuena.
+- ⚠️ **Tlalpan NO es su zona base:** fue una **idea de área de mercado que propusimos**. Ojo con no sobre-posicionar Tlalpan como si fuera su especialidad.
+- 💡 La propiedad-ancla que generó mensajes es justamente una casa en **Fuentes de Tepepan, Tlalpan** (ID interno 621195, $6.8M) → sirve como formato de contenido/pauta, pero la marca de "especialista de zona" es **Jardín Balbuena**.
+
+### Reglas de publicación de propiedades (indicadas por el cliente)
+- 🔒 **El "ID" de cada propiedad NUNCA se publica** (es control interno). Ya implementado en el modelo del sitio.
+- 💲 **El precio solo se publica si Lourdes lo autoriza** (flag `mostrarPrecio`; si no, "Precio a consultar").
+- 🔐 Por seguridad, publicar **colonia + alcaldía/municipio**, no el número exacto de la calle (a confirmar).
+
+### Inventario
+- **~19 propiedades** entregadas hasta ahora (13 publicadas la semana pasada + 6 nuevas). Vienen en **PDF** (ficha con datos + catálogo de fotos). Falta que Antonio envíe las **imágenes como archivos** para el sitio.
 
 ### SEO local a atacar en el sitio
 - "asesor inmobiliario Jardín Balbuena" / "Venustiano Carranza"
-- "casas / departamentos en venta Jardín Balbuena"
-- "asesor inmobiliario Tlalpan" / "propiedades en Tlalpan"
+- "casas / departamentos en venta CDMX"
+- "propiedades en venta Estado de México"
+- Páginas por zona/colonia según dónde estén los listings reales.
 
 ## Datos PENDIENTES por confirmar con Antonio (para afinar segmentación)
 
-- [ ] Rango de precios de las propiedades que maneja (define el nivel socioeconómico del target).
-- [ ] ¿Se enfoca más en venta, renta o ambos? *(llegan fichas técnicas)*
-- [ ] ¿Maneja inventario propio o comparte el de la oficina Grupo Mormos?
-- [ ] Tipos de propiedad (casa, depto, terreno, comercial).
+- [ ] Confirmar número de la oficina (830 Local A vs 901).
+- [ ] ¿Qué propiedades pueden mostrar **precio** públicamente? (default: oculto)
+- [ ] ¿Publicamos dirección exacta o solo colonia/alcaldía? (recomendado: solo colonia)
+- [ ] Rango de precios general del portafolio (define nivel socioeconómico del target).
+- [ ] Reparto venta vs. renta en el portafolio.
+- [ ] Tipos de propiedad predominantes (casa, depto, terreno, comercial).
 
 ---
 
