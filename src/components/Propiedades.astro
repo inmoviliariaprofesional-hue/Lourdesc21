@@ -16,7 +16,7 @@ import { whatsappLink } from "../data/site";
       <article class="group overflow-hidden rounded-xl border border-black/5 bg-white shadow-sm transition hover:shadow-lg">
         <div class="relative aspect-[4/3] overflow-hidden bg-cream">
           <img
-            src={p.imagen}
+            src={p.imagenes[0]}
             alt={p.titulo}
             class="h-full w-full object-cover transition group-hover:scale-105"
             onerror="this.style.display='none'; this.parentElement.classList.add('flex','items-center','justify-center'); this.parentElement.insertAdjacentHTML('beforeend','<span class=\'text-ink/30 text-sm\'>Foto de la propiedad</span>');"
@@ -26,13 +26,16 @@ import { whatsappLink } from "../data/site";
           </span>
         </div>
         <div class="p-5">
-          <p class="text-xs uppercase tracking-wide text-ink/50">{p.tipo} · {p.zona}</p>
+          <p class="text-xs uppercase tracking-wide text-ink/50">{p.tipo} · {p.colonia}, {p.alcaldia}, {p.estado}</p>
           <h3 class="mt-1 font-display text-lg font-semibold">{p.titulo}</h3>
-          <p class="mt-1 font-semibold text-gold-dark">{p.precio}</p>
+          <p class="mt-1 font-semibold text-gold-dark">
+            {p.mostrarPrecio && p.precio ? p.precio : "Precio a consultar"}
+          </p>
           <div class="mt-3 flex flex-wrap gap-3 text-sm text-ink/60">
             {p.recamaras && <span>🛏️ {p.recamaras} rec.</span>}
             {p.banos && <span>🛁 {p.banos} baños</span>}
-            {p.m2 && <span>📐 {p.m2} m²</span>}
+            {p.estacionamientos && <span>🚗 {p.estacionamientos}</span>}
+            {p.m2Construccion && <span>📐 {p.m2Construccion} m²</span>}
           </div>
           <a
             href={whatsappLink(`Hola Lourdes, me interesa la propiedad: ${p.titulo}. ¿Me das más info?`)}

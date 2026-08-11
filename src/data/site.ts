@@ -7,13 +7,21 @@ export const site = {
   franquicia: "Century 21 Grupo Mormos",
   tagline: "Tu patrimonio merece un acompañamiento real",
   descripcion:
-    "Te acompaño a comprar, vender, rentar o invertir en propiedades en Jardín Balbuena, Venustiano Carranza y Tlalpan, con inteligencia, empatía y acción.",
+    "Te acompaño a comprar, vender, rentar o invertir en CDMX y Estado de México, con inteligencia, empatía y acción.",
 
-  // Zonas de operación (para SEO local y textos)
-  zonas: ["Jardín Balbuena", "Venustiano Carranza", "Tlalpan"],
+  // Cobertura y sede
+  cobertura: "CDMX y Estado de México",
+  sede: "Jardín Balbuena, Venustiano Carranza, CDMX",
   ciudad: "Ciudad de México",
 
-  // Contacto
+  // Oficina Century 21 Grupo Mormos
+  // NOTA: verificar número exacto — la ficha de propiedad indica "830, Local A"
+  // y la carta de presentación indica "901". Confirmar con Antonio.
+  direccionOficina:
+    "Fray Servando Teresa de Mier 830, Local A, Jardín Balbuena, Venustiano Carranza, CDMX",
+  telefonoOficina: "55 5935 7280",
+
+  // Contacto de Lourdes
   emailOficial: "lourdes@c21grupomormos.com",
   telefonos: ["55 4001 2160", "55 7942 1249"],
   // WhatsApp principal en formato internacional (México +52)

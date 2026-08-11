@@ -29,8 +29,16 @@ import { site, whatsappLink } from "../data/site";
             <a href={`mailto:${site.emailOficial}`} class="hover:text-gold-dark">{site.emailOficial}</a>
           </li>
           <li class="flex items-center gap-3">
+            <span class="text-xl">🏢</span>
+            <a href={`tel:+52${site.telefonoOficina.replace(/\s/g, "")}`} class="hover:text-gold-dark">Oficina: {site.telefonoOficina}</a>
+          </li>
+          <li class="flex items-start gap-3">
             <span class="text-xl">📍</span>
-            <span>{site.zonas.join(" · ")} — {site.ciudad}</span>
+            <span>{site.direccionOficina}</span>
+          </li>
+          <li class="flex items-center gap-3">
+            <span class="text-xl">🗺️</span>
+            <span>Cobertura: {site.cobertura}</span>
           </li>
         </ul>
 
