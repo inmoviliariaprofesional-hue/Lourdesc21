@@ -7,10 +7,10 @@ export const site = {
   franquicia: "Century 21 Grupo Mormos",
   tagline: "Tu patrimonio merece un acompañamiento real",
   descripcion:
-    "Te acompaño a comprar, vender, rentar o invertir en CDMX y Estado de México, con inteligencia, empatía y acción.",
+    "Te acompaño a comprar, vender, rentar o invertir en CDMX, Estado de México y más, con inteligencia, empatía y acción.",
 
   // Cobertura y sede
-  cobertura: "CDMX y Estado de México",
+  cobertura: "CDMX, Estado de México y más",
   sede: "Jardín Balbuena, Venustiano Carranza, CDMX",
   ciudad: "Ciudad de México",
 
