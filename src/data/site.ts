@@ -3,11 +3,13 @@
 
 export const site = {
   nombre: "Lourdes Martínez",
+  nombreLegal: "María Lourdes Martínez López",
   rol: "Asesora Inmobiliaria Certificada",
   franquicia: "Century 21 Grupo Mormos",
   tagline: "Tu patrimonio merece un acompañamiento real",
   descripcion:
     "Te acompaño a comprar, vender, rentar o invertir en CDMX, Estado de México y más, con inteligencia, empatía y acción.",
+  actualizacionLegal: "agosto de 2026",
 
   // Cobertura y sede
   cobertura: "CDMX, Estado de México y más",
@@ -15,8 +17,8 @@ export const site = {
   ciudad: "Ciudad de México",
 
   // Oficina Century 21 Grupo Mormos
-  // NOTA: verificar número exacto — la ficha de propiedad indica "830, Local A"
-  // y la carta de presentación indica "901". Confirmar con Antonio.
+  // Domicilio vigente confirmado por Antonio para el sitio. La carta adjunta conserva
+  // el número 901 como dato de una versión anterior y no debe publicarse.
   direccionOficina:
     "Fray Servando Teresa de Mier 830, Local A, Jardín Balbuena, Venustiano Carranza, CDMX",
   telefonoOficina: "55 5935 7280",
@@ -37,7 +39,7 @@ export const site = {
   },
 
   // SEO
-  urlBase: "https://lourdesc21.pages.dev", // ajustar al dominio final
+  urlBase: "https://lourdesc21.pages.dev", // dominio público actual; cambiar cuando exista uno propio
 } as const;
 
 export function whatsappLink(mensaje: string = site.whatsappMensaje): string {
