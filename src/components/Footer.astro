@@ -3,12 +3,38 @@ import { site } from "../data/site";
 const year = new Date().getFullYear();
 ---
 
-<footer class="bg-ink text-white/70">
-  <div class="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 px-5 py-8 text-sm md:flex-row">
-    <p>
-      <span class="font-display font-semibold text-gold">{site.nombre}</span>
-      — {site.rol}, {site.franquicia}
-    </p>
-    <p>© {year} · {site.ciudad}</p>
+<footer class="border-t border-white/[0.07] bg-ink text-white">
+  <div class="mx-auto max-w-7xl px-5 py-12 sm:px-7 lg:px-10">
+    <div class="grid gap-10 md:grid-cols-[1.3fr_0.7fr_0.7fr]">
+      <div>
+        <div class="flex items-center gap-3">
+          <img src="/images/logo-c21.png" alt="Century 21 Grupo Mormos" loading="lazy" width="44" height="44" class="h-11 w-11 rounded-xl object-contain" />
+          <div>
+            <p class="font-display font-semibold text-gold-light">{site.nombre}</p>
+            <p class="text-[0.6rem] uppercase tracking-[0.17em] text-white/40">{site.franquicia}</p>
+          </div>
+        </div>
+        <p class="mt-5 max-w-sm text-sm leading-7 text-white/45">Asesoría inmobiliaria certificada para comprar, vender, rentar e invertir con estrategia.</p>
+      </div>
+      <div>
+        <p class="text-[0.65rem] font-semibold uppercase tracking-[0.18em] text-gold">Explora</p>
+        <nav class="mt-4 flex flex-col gap-2 text-sm text-white/52" aria-label="Navegación de pie de página">
+          <a href="/" class="hover:text-white">Inicio</a>
+          <a href="/propiedades/" class="hover:text-white">Propiedades</a>
+          <a href="/#sobre-mi" class="hover:text-white">Sobre Lourdes</a>
+        </nav>
+      </div>
+      <div>
+        <p class="text-[0.65rem] font-semibold uppercase tracking-[0.18em] text-gold">Contacto</p>
+        <div class="mt-4 flex flex-col gap-2 text-sm text-white/52">
+          <a href={`tel:+52${site.telefonos[0].replace(/\s/g, "")}`} class="hover:text-white">{site.telefonos[0]}</a>
+          <a href={`mailto:${site.emailOficial}`} class="break-all hover:text-white">{site.emailOficial}</a>
+        </div>
+      </div>
+    </div>
+    <div class="mt-10 flex flex-col gap-3 border-t border-white/[0.07] pt-6 text-[0.68rem] text-white/32 sm:flex-row sm:items-center sm:justify-between">
+      <p>© {year} {site.nombre}. Todos los derechos reservados.</p>
+      <p>Cada oficina es de propiedad y operación independiente.</p>
+    </div>
   </div>
 </footer>

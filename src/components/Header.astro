@@ -1,38 +1,142 @@
 ---
 import { site, whatsappLink } from "../data/site";
+
+const pathname = Astro.url.pathname;
+const links = [
+  { href: "/", label: "Inicio", active: pathname === "/" },
+  { href: "/propiedades/", label: "Propiedades", active: pathname.startsWith("/propiedades") },
+  { href: "/#compradores", label: "Comprar", active: false },
+  { href: "/#vendedores", label: "Vender / rentar", active: false },
+  { href: "/#sobre-mi", label: "Lourdes", active: false },
+  { href: "/#contacto", label: "Contacto", active: false },
+];
 ---
 
-<header class="sticky top-0 z-40 bg-ink/95 backdrop-blur text-white">
-  <nav class="mx-auto flex max-w-6xl items-center justify-between px-5 py-4">
-    <a href="/" class="flex items-center gap-3 leading-tight">
-      <img
-        src="/images/logo-c21.png"
-        alt="Century 21 Grupo Mormos"
-        class="h-11 w-11 rounded object-contain"
-        onerror="this.style.display='none';"
-      />
-      <span class="flex flex-col">
-        <span class="font-display text-lg font-semibold text-gold">{site.nombre}</span>
-        <span class="text-[11px] uppercase tracking-widest text-white/70">{site.franquicia}</span>
+<header class="sticky top-0 z-50 border-b border-white/[0.07] bg-ink/92 text-white backdrop-blur-xl">
+  <nav class="mx-auto flex h-[76px] max-w-7xl items-center justify-between px-4 sm:px-7 lg:px-10" aria-label="Navegación principal">
+    <a href="/" class="group flex min-w-0 items-center gap-3" aria-label={`${site.nombre}, ir a Inicio`}>
+      <span class="relative flex h-11 w-11 shrink-0 items-center justify-center overflow-hidden rounded-xl border border-gold/35 bg-white/[0.04]">
+        <img src="/images/logo-c21.png" alt="" class="h-full w-full object-contain" />
+      </span>
+      <span class="hidden min-w-0 flex-col leading-tight sm:flex">
+        <span class="truncate font-display text-[0.95rem] font-semibold text-gold-light">{site.nombre}</span>
+        <span class="truncate text-[0.6rem] uppercase tracking-[0.19em] text-white/52">{site.franquicia}</span>
       </span>
     </a>
 
-    <ul class="hidden items-center gap-7 text-sm md:flex">
-      <li><a href="/propiedades/" class="hover:text-gold">Propiedades</a></li>
-      <li><a href="/#compromiso" class="hover:text-gold">Mi compromiso</a></li>
-      <li><a href="/#compradores" class="hover:text-gold">Compradores</a></li>
-      <li><a href="/#vendedores" class="hover:text-gold">Vendedores</a></li>
-      <li><a href="/#sobre-mi" class="hover:text-gold">Sobre mí</a></li>
-      <li><a href="/#contacto" class="hover:text-gold">Contacto</a></li>
+    <ul class="hidden items-center gap-1 lg:flex">
+      {links.map((link) => (
+        <li>
+          <a
+            href={link.href}
+            aria-current={link.active ? "page" : undefined}
+            class:list={[
+              "relative rounded-full px-3.5 py-2 text-[0.79rem] font-medium transition hover:bg-white/[0.06] hover:text-gold-light",
+              link.active ? "bg-white/[0.07] text-gold-light" : "text-white/72",
+            ]}
+          >
+            {link.label}
+          </a>
+        </li>
+      ))}
     </ul>
 
-    <a
-      href={whatsappLink()}
-      target="_blank"
-      rel="noopener"
-      class="rounded-full bg-gold px-4 py-2 text-sm font-semibold text-ink transition hover:bg-gold-dark"
-    >
-      WhatsApp
-    </a>
+    <div class="flex items-center gap-2">
+      <a href={whatsappLink()} target="_blank" rel="noopener" class="btn-primary hidden !min-h-10 !px-5 !py-2 text-xs md:inline-flex">
+        Agendar conversación
+      </a>
+      <button
+        id="menu-toggle"
+        type="button"
+        class="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/15 text-white transition hover:border-gold/60 hover:text-gold-light lg:hidden"
+        aria-expanded="false"
+        aria-controls="mobile-menu"
+        aria-label="Abrir menú"
+      >
+        <svg class="menu-open-icon h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+          <path d="M4 7h16M4 12h16M4 17h16" />
+        </svg>
+        <svg class="menu-close-icon hidden h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+          <path d="m6 6 12 12M18 6 6 18" />
+        </svg>
+      </button>
+    </div>
   </nav>
+
+  <div id="mobile-menu" class="fixed inset-x-0 top-[76px] hidden h-[calc(100dvh-76px)] overflow-y-auto border-t border-white/10 bg-ink/98 p-5 backdrop-blur-2xl lg:hidden">
+    <div class="mx-auto flex min-h-full max-w-lg flex-col py-5">
+      <p class="mb-5 text-[0.66rem] font-semibold uppercase tracking-[0.24em] text-gold">Navegación</p>
+      <ul class="divide-y divide-white/[0.08]">
+        {links.map((link, index) => (
+          <li>
+            <a
+              href={link.href}
+              class:list={[
+                "mobile-link flex items-center justify-between py-4 font-display text-2xl font-medium transition hover:text-gold-light",
+                link.active ? "text-gold-light" : "text-white",
+              ]}
+              data-first={index === 0 ? "true" : undefined}
+              aria-current={link.active ? "page" : undefined}
+            >
+              {link.label}
+              <span aria-hidden="true" class="text-base text-gold">↗</span>
+            </a>
+          </li>
+        ))}
+      </ul>
+      <div class="mt-auto pt-8">
+        <a href={whatsappLink()} target="_blank" rel="noopener" class="btn-primary w-full">Hablar con Lourdes</a>
+        <p class="mt-5 text-center text-xs leading-relaxed text-white/45">
+          {site.rol}<br />{site.sede}
+        </p>
+      </div>
+    </div>
+  </div>
 </header>
+
+<script is:inline>
+  (function () {
+    const button = document.getElementById("menu-toggle");
+    const menu = document.getElementById("mobile-menu");
+    if (!button || !menu) return;
+    const openIcon = button.querySelector(".menu-open-icon");
+    const closeIcon = button.querySelector(".menu-close-icon");
+    const firstLink = menu.querySelector('[data-first="true"]');
+
+    function setOpen(open) {
+      button.setAttribute("aria-expanded", String(open));
+      button.setAttribute("aria-label", open ? "Cerrar menú" : "Abrir menú");
+      menu.classList.toggle("hidden", !open);
+      openIcon?.classList.toggle("hidden", open);
+      closeIcon?.classList.toggle("hidden", !open);
+      document.body.classList.toggle("menu-open", open);
+      if (open) setTimeout(() => firstLink?.focus(), 30);
+    }
+
+    button.addEventListener("click", () => setOpen(button.getAttribute("aria-expanded") !== "true"));
+    menu.querySelectorAll("a").forEach((link) => link.addEventListener("click", () => setOpen(false)));
+    document.addEventListener("keydown", (event) => {
+      if (button.getAttribute("aria-expanded") !== "true") return;
+      if (event.key === "Escape") {
+        setOpen(false);
+        button.focus();
+        return;
+      }
+      if (event.key === "Tab") {
+        const focusable = [button, ...menu.querySelectorAll('a[href], button:not([disabled])')];
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+        if (event.shiftKey && document.activeElement === first) {
+          event.preventDefault();
+          last.focus();
+        } else if (!event.shiftKey && document.activeElement === last) {
+          event.preventDefault();
+          first.focus();
+        }
+      }
+    });
+    window.addEventListener("resize", () => {
+      if (window.innerWidth >= 1024) setOpen(false);
+    });
+  })();
+</script>

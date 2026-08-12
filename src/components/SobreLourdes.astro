@@ -1,39 +1,45 @@
 ---
-import { site } from "../data/site";
-
+import { site, whatsappLink } from "../data/site";
 const valores = [
-  { titulo: "Inteligencia", texto: "Datos de mercado reales para decisiones acertadas." },
-  { titulo: "Empatía", texto: "Escucho tu situación y trabajo a tu ritmo." },
-  { titulo: "Acción", texto: "Respuesta rápida y seguimiento hasta cerrar." },
+  ["Estrategia", "Cada recomendación parte de datos, contexto y objetivos reales."],
+  ["Claridad", "Conoces el proceso, los siguientes pasos y las decisiones importantes."],
+  ["Seguimiento", "La operación se acompaña desde la primera conversación hasta el cierre."],
 ];
 ---
 
-<section id="sobre-mi" class="bg-ink text-white">
-  <div class="section reveal grid items-center gap-10 md:grid-cols-[0.8fr_1.2fr]">
-    <div class="mx-auto w-full max-w-xs">
-      <div class="aspect-square overflow-hidden rounded-2xl border border-gold/30 bg-ink-soft">
-        <img
-          src="/images/lourdes-branding.png"
-          alt={site.nombre}
-          class="h-full w-full object-cover"
-          onerror="this.style.display='none'; this.parentElement.classList.add('flex','items-center','justify-center'); this.parentElement.insertAdjacentHTML('beforeend','<span class=\'text-white/40 text-sm px-6 text-center\'>Foto de Lourdes</span>');"
-        />
+<section id="sobre-mi" class="noise-overlay relative overflow-hidden bg-ink text-white">
+  <div class="premium-grid absolute inset-0 opacity-40"></div>
+  <div class="section relative grid items-center gap-14 lg:grid-cols-[0.9fr_1.1fr]">
+    <div class="reveal relative mx-auto w-full max-w-[31rem]">
+      <div class="absolute -inset-5 rounded-[2.5rem] border border-gold/15"></div>
+      <div class="relative aspect-[4/5] overflow-hidden rounded-[2rem] border border-white/10 bg-gradient-to-br from-white/10 to-white/[0.02]">
+        <img src="/images/lourdes-branding.png" alt={`${site.nombre}, ${site.rol}`} loading="lazy" width="1024" height="1024" class="h-full w-full object-cover" />
+        <div class="absolute inset-0 bg-gradient-to-t from-ink/75 via-transparent to-transparent"></div>
+        <div class="absolute bottom-0 left-0 right-0 p-7">
+          <p class="font-display text-xl font-semibold">{site.nombre}</p>
+          <p class="mt-1 text-xs uppercase tracking-[0.15em] text-gold">{site.rol}</p>
+        </div>
       </div>
     </div>
-    <div>
-      <p class="text-sm font-semibold uppercase tracking-widest text-gold">Sobre mí</p>
-      <h2 class="mt-2 font-display text-3xl font-bold">Hola, soy {site.nombre}</h2>
-      <p class="mt-4 text-white/80">
-        {site.rol} en {site.franquicia}, con oficina en Jardín Balbuena. Mi propósito es ayudarte a comprar, vender, rentar o invertir en {site.cobertura} con acompañamiento real, sin presiones y con la información correcta en cada paso.
+
+    <div class="reveal">
+      <p class="eyebrow !text-gold">Acompañamiento personal</p>
+      <h2 class="section-title mt-5">Una asesora para una decisión que sí importa.</h2>
+      <p class="mt-6 max-w-2xl text-lg leading-8 text-white/62">
+        Soy {site.nombre}, {site.rol.toLowerCase()} en {site.franquicia}. Desde nuestra sede en Jardín Balbuena te acompaño a comprar, vender, rentar o invertir en {site.cobertura}.
       </p>
-      <div class="mt-8 grid gap-5 sm:grid-cols-3">
-        {valores.map((v) => (
-          <div class="rounded-xl border border-white/10 p-5">
-            <h3 class="font-display text-lg font-semibold text-gold">{v.titulo}</h3>
-            <p class="mt-1 text-sm text-white/70">{v.texto}</p>
+      <p class="mt-4 max-w-2xl leading-7 text-white/48">Mi propósito es que tomes decisiones inmobiliarias con información, tranquilidad y una estrategia que cuide tu patrimonio.</p>
+
+      <div class="mt-10 grid gap-5 sm:grid-cols-3">
+        {valores.map(([titulo, texto]) => (
+          <div class="border-t border-gold/35 pt-5">
+            <h3 class="text-base font-semibold text-gold-light">{titulo}</h3>
+            <p class="mt-2 text-xs leading-6 text-white/48">{texto}</p>
           </div>
         ))}
       </div>
+
+      <a href={whatsappLink("Hola Lourdes, quiero contarte qué necesito y recibir tu orientación.")} target="_blank" rel="noopener" class="btn-primary mt-10">Conversar con Lourdes</a>
     </div>
   </div>
 </section>

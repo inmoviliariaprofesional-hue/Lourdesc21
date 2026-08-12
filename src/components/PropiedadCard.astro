@@ -2,56 +2,56 @@
 import type { Propiedad } from "../data/propiedades";
 import { whatsappLink } from "../data/site";
 
-interface Props {
-  p: Propiedad;
-}
+interface Props { p: Propiedad; }
 const { p } = Astro.props;
 const url = `/propiedades/${p.slug}/`;
 ---
 
-<article class="group flex flex-col overflow-hidden rounded-xl border border-black/5 bg-white shadow-sm transition hover:shadow-lg">
-  <a href={url} class="relative block aspect-[4/3] overflow-hidden bg-cream">
+<article class="premium-card lift-hover group flex h-full flex-col overflow-hidden rounded-[1.4rem]">
+  <a href={url} class="relative block aspect-[4/3] overflow-hidden bg-stone">
     <img
       src={p.imagenes[0]}
       alt={`${p.titulo} — foto principal`}
       loading="lazy"
-      class="h-full w-full object-cover transition duration-300 group-hover:scale-105"
+      width="1200"
+      height="900"
+      class="h-full w-full object-cover transition duration-700 group-hover:scale-[1.045]"
     />
-    <span class="absolute left-3 top-3 rounded-full bg-ink px-3 py-1 text-xs font-semibold uppercase tracking-wide text-gold">
-      {p.operacion}
+    <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-black/5"></div>
+    <span class="absolute left-4 top-4 rounded-full border border-white/15 bg-black/60 px-3 py-1.5 text-[0.62rem] font-semibold uppercase tracking-[0.16em] text-gold-light backdrop-blur-md">
+      En {p.operacion}
     </span>
     {p.imagenes.length > 1 && (
-      <span class="absolute bottom-3 right-3 rounded-full bg-black/60 px-2 py-1 text-xs font-medium text-white">
-        📷 {p.imagenes.length}
+      <span class="absolute bottom-4 right-4 rounded-full border border-white/15 bg-black/55 px-3 py-1.5 text-[0.65rem] font-medium text-white backdrop-blur-md">
+        {p.imagenes.length} fotos
       </span>
     )}
   </a>
-  <div class="flex flex-1 flex-col p-5">
-    <p class="text-xs uppercase tracking-wide text-ink/50">{p.tipo} · {p.colonia}, {p.alcaldia}</p>
-    <h3 class="mt-1 font-display text-lg font-semibold leading-snug">
-      <a href={url} class="hover:text-gold-dark">{p.titulo}</a>
+  <div class="flex flex-1 flex-col p-6">
+    <p class="text-[0.65rem] font-semibold uppercase tracking-[0.15em] text-gold-dark">{p.tipo} · {p.alcaldia}</p>
+    <h3 class="mt-2 text-xl font-semibold leading-tight">
+      <a href={url} class="transition hover:text-gold-dark">{p.titulo}</a>
     </h3>
-    <p class="mt-1 font-semibold text-gold-dark">
+    <p class="mt-2 text-sm text-ink/48">{p.colonia}, {p.estado}</p>
+    <p class="mt-5 font-display text-xl font-semibold text-ink">
       {p.mostrarPrecio && p.precio ? p.precio : "Precio a consultar"}
     </p>
-    <div class="mt-3 flex flex-wrap gap-x-3 gap-y-1 text-sm text-ink/60">
-      {p.recamaras && <span>🛏️ {p.recamaras} rec.</span>}
-      {p.banos && <span>🛁 {p.banos} baños</span>}
-      {p.estacionamientos && <span>🚗 {p.estacionamientos}</span>}
-      {p.m2Construccion && <span>📐 {p.m2Construccion} m²</span>}
+    <div class="mt-4 flex flex-wrap gap-x-4 gap-y-2 border-t border-ink/[0.07] pt-4 text-xs text-ink/58">
+      {p.recamaras && <span>{p.recamaras} recámaras</span>}
+      {p.banos && <span>{p.banos} baños</span>}
+      {p.estacionamientos && <span>{p.estacionamientos} estac.</span>}
+      {p.m2Construccion && <span>{p.m2Construccion} m²</span>}
     </div>
-    <div class="mt-5 flex items-center gap-3 pt-1">
-      <a href={url} class="flex-1 rounded-full bg-ink px-4 py-2 text-center text-sm font-semibold text-white transition hover:bg-ink-soft">
-        Ver detalles
-      </a>
+    <div class="mt-auto flex items-center gap-3 pt-6">
+      <a href={url} class="btn-ghost-dark min-w-0 flex-1 !min-h-10 !px-4 !py-2">Ver propiedad</a>
       <a
-        href={whatsappLink(`Hola Lourdes, me interesa: ${p.titulo} (${p.colonia}). ¿Me das más info?`)}
+        href={whatsappLink(`Hola Lourdes, me interesa: ${p.titulo} (${p.colonia}). ¿Me das más información?`)}
         target="_blank"
         rel="noopener"
-        aria-label="Consultar por WhatsApp"
-        class="rounded-full border border-ink px-4 py-2 text-sm font-semibold transition hover:bg-ink hover:text-white"
+        aria-label={`Consultar ${p.titulo} por WhatsApp`}
+        class="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-ink text-white transition hover:bg-gold-dark"
       >
-        WhatsApp
+        <svg viewBox="0 0 24 24" class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 0 1-9 8.5 9.4 9.4 0 0 1-4-.9L3 21l1.7-4.6A8.5 8.5 0 1 1 21 11.5Z"/><path d="M8.5 8.5c.5 3 2 4.5 5 5"/></svg>
       </a>
     </div>
   </div>
