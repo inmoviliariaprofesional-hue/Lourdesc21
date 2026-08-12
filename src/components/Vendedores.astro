@@ -1,58 +1,60 @@
 ---
-import { whatsappLink } from "../data/site";
+import { site, whatsappLink } from "../data/site";
 ---
 
-<section id="vendedores" class="section reveal grid items-center gap-10 md:grid-cols-2">
-  <div>
-    <p class="text-sm font-semibold uppercase tracking-widest text-gold-dark">Para propietarios</p>
-    <h2 class="mt-2 font-display text-3xl font-bold">¿Quieres vender o rentar tu propiedad?</h2>
-    <p class="mt-4 text-ink/70">
-      Muchos venden por debajo de su valor real por no conocer el mercado. Te ayudo a fijar el precio correcto y a difundir tu propiedad profesionalmente para vender más rápido.
-    </p>
-    <a
-      href={whatsappLink("Hola Lourdes, quiero vender/rentar mi propiedad. ¿Me ayudas?")}
-      target="_blank"
-      rel="noopener"
-      class="mt-8 inline-block rounded-full bg-ink px-6 py-3 font-semibold text-white transition hover:bg-ink-soft"
-    >
-      Quiero vender / rentar
-    </a>
-  </div>
+<section id="vendedores" class="relative overflow-hidden bg-cream">
+  <div class="absolute right-0 top-0 h-[28rem] w-[28rem] rounded-full bg-gold/10 blur-[110px]"></div>
+  <div class="section relative grid items-center gap-12 lg:grid-cols-[0.88fr_1.12fr]">
+    <div class="reveal">
+      <p class="eyebrow">Para propietarios</p>
+      <h2 class="section-title mt-5">El precio correcto cambia toda la operación.</h2>
+      <p class="mt-6 max-w-xl text-lg leading-8 text-ink/60">Una propiedad mal valuada pierde tiempo, margen y oportunidades. Comienza con una lectura profesional de su mercado real.</p>
+      <ul class="mt-8 space-y-3 text-sm text-ink/68">
+        <li class="flex gap-3"><span class="text-gold-dark">✓</span> Comparables actuales de la zona</li>
+        <li class="flex gap-3"><span class="text-gold-dark">✓</span> Posicionamiento y estrategia de salida</li>
+        <li class="flex gap-3"><span class="text-gold-dark">✓</span> Sin compromiso y con absoluta confidencialidad</li>
+      </ul>
+      <a href={whatsappLink("Hola Lourdes, quiero vender o rentar mi propiedad y conocer tu estrategia.")} target="_blank" rel="noopener" class="btn-ghost-dark mt-9">Conocer la estrategia</a>
+    </div>
 
-  <!-- Lead magnet: Análisis de Mercado Gratuito -->
-  <div id="analisis" class="rounded-2xl border border-gold/40 bg-cream p-8 shadow-sm">
-    <span class="text-3xl">📊</span>
-    <h3 class="mt-3 font-display text-2xl font-bold">Análisis de Mercado Gratuito</h3>
-    <p class="mt-2 text-sm text-ink/70">
-      Descubre cuánto vale realmente tu propiedad hoy, sin compromiso.
-    </p>
+    <div id="analisis" class="reveal premium-card rounded-[2rem] p-6 sm:p-9 lg:p-11">
+      <div class="flex items-start justify-between gap-5">
+        <div>
+          <p class="text-[0.65rem] font-semibold uppercase tracking-[0.2em] text-gold-dark">Diagnóstico inicial</p>
+          <h3 class="mt-3 text-3xl font-semibold">Análisis de mercado gratuito</h3>
+        </div>
+        <span class="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-ink text-gold-light">
+          <svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M4 19V9m6 10V5m6 14v-7m4 7H2"/></svg>
+        </span>
+      </div>
+      <p class="mt-4 text-sm leading-7 text-ink/58">Déjanos los datos esenciales. Lourdes continuará la conversación personalmente por WhatsApp.</p>
 
-    <!-- TODO: conectar a Brevo (form action / API) cuando la cuenta esté creada.
-         Mientras tanto, el formulario arma un mensaje de WhatsApp con los datos. -->
-    <form id="form-analisis" class="mt-6 space-y-3">
-      <input required name="nombre" placeholder="Tu nombre" class="w-full rounded-lg border border-black/10 px-4 py-2.5 text-sm outline-none focus:border-gold" />
-      <input required name="telefono" placeholder="Tu teléfono / WhatsApp" class="w-full rounded-lg border border-black/10 px-4 py-2.5 text-sm outline-none focus:border-gold" />
-      <input name="propiedad" placeholder="Zona y tipo de propiedad (ej. Casa en Tlalpan)" class="w-full rounded-lg border border-black/10 px-4 py-2.5 text-sm outline-none focus:border-gold" />
-      <button type="submit" class="w-full rounded-full bg-gold px-6 py-3 font-semibold text-ink transition hover:bg-gold-dark">
-        Solicitar mi análisis gratis
-      </button>
-    </form>
+      <form id="form-analisis" class="mt-7 space-y-4">
+        <div>
+          <label for="analisis-nombre" class="mb-1.5 block text-xs font-semibold text-ink/60">Nombre</label>
+          <input id="analisis-nombre" required name="nombre" autocomplete="name" placeholder="¿Cómo te llamas?" class="w-full rounded-xl border border-ink/10 bg-white px-4 py-3 text-sm outline-none transition focus:border-gold" />
+        </div>
+        <div>
+          <label for="analisis-telefono" class="mb-1.5 block text-xs font-semibold text-ink/60">Teléfono / WhatsApp</label>
+          <input id="analisis-telefono" required name="telefono" type="tel" autocomplete="tel" placeholder="55 0000 0000" class="w-full rounded-xl border border-ink/10 bg-white px-4 py-3 text-sm outline-none transition focus:border-gold" />
+        </div>
+        <div>
+          <label for="analisis-propiedad" class="mb-1.5 block text-xs font-semibold text-ink/60">Propiedad</label>
+          <input id="analisis-propiedad" name="propiedad" placeholder="Ej. Departamento en Jardín Balbuena" class="w-full rounded-xl border border-ink/10 bg-white px-4 py-3 text-sm outline-none transition focus:border-gold" />
+        </div>
+        <button type="submit" class="btn-primary mt-2 w-full">Solicitar análisis gratuito</button>
+      </form>
+      <p class="mt-4 text-center text-[0.68rem] text-ink/42">Tus datos se utilizarán únicamente para responder esta solicitud.</p>
+    </div>
   </div>
 </section>
 
-<script is:inline define:vars={{ waNumber: "525540012160" }}>
+<script is:inline define:vars={{ waNumber: site.whatsapp }}>
   const form = document.getElementById("form-analisis");
-  form?.addEventListener("submit", (e) => {
-    e.preventDefault();
+  form?.addEventListener("submit", (event) => {
+    event.preventDefault();
     const data = new FormData(form);
-    const msg =
-      `Hola Lourdes, quiero mi Análisis de Mercado Gratuito.\n` +
-      `Nombre: ${data.get("nombre")}\n` +
-      `Teléfono: ${data.get("telefono")}\n` +
-      `Propiedad: ${data.get("propiedad") || "(no especificada)"}`;
-    window.open(
-      `https://wa.me/${waNumber}?text=${encodeURIComponent(msg)}`,
-      "_blank"
-    );
+    const msg = `Hola Lourdes, quiero mi Análisis de Mercado Gratuito.\nNombre: ${data.get("nombre")}\nTeléfono: ${data.get("telefono")}\nPropiedad: ${data.get("propiedad") || "(no especificada)"}`;
+    window.open(`https://wa.me/${waNumber}?text=${encodeURIComponent(msg)}`, "_blank", "noopener,noreferrer");
   });
 </script>

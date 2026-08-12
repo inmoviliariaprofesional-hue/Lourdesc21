@@ -5,12 +5,17 @@ import { site } from "../data/site";
 interface Props {
   title?: string;
   description?: string;
+  image?: string;
 }
 
 const {
   title = `${site.nombre} | ${site.rol} · ${site.franquicia}`,
   description = site.descripcion,
+  image = "/images/lourdes-branding.png",
 } = Astro.props;
+
+const canonical = new URL(Astro.url.pathname, site.urlBase).toString();
+const socialImage = new URL(image, site.urlBase).toString();
 ---
 
 <!doctype html>
@@ -20,39 +25,40 @@ const {
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
+    <link rel="canonical" href={canonical} />
 
     <title>{title}</title>
     <meta name="description" content={description} />
+    <meta name="theme-color" content="#0b0d0f" />
 
-    <!-- SEO local -->
-    <meta
-      name="keywords"
-      content="asesor inmobiliario Jardín Balbuena, casas en venta CDMX, departamentos en venta Venustiano Carranza, propiedades Estado de México, Century 21 Grupo Mormos, Lourdes Martínez inmobiliaria"
-    />
-
-    <!-- Open Graph -->
     <meta property="og:type" content="website" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:locale" content="es_MX" />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={socialImage} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={socialImage} />
 
-    <!-- Fuentes -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
+    <script is:inline>document.documentElement.classList.add("js");</script>
   </head>
   <body class="antialiased">
+    <a class="skip-link" href="#contenido">Saltar al contenido</a>
     <slot />
 
     <script is:inline>
-      // Aparición suave de secciones al hacer scroll
       (function () {
-        const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
+        const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
         const els = document.querySelectorAll(".reveal");
-        if (mq.matches || !("IntersectionObserver" in window)) {
+        if (reduce || !("IntersectionObserver" in window)) {
           els.forEach((el) => el.classList.add("is-visible"));
           return;
         }
@@ -65,7 +71,7 @@ const {
               }
             });
           },
-          { threshold: 0.12, rootMargin: "0px 0px -8% 0px" }
+          { threshold: 0.1, rootMargin: "0px 0px -7% 0px" }
         );
         els.forEach((el) => obs.observe(el));
       })();

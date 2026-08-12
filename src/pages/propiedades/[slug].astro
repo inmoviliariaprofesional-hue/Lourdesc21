@@ -5,6 +5,7 @@ import Footer from "../../components/Footer.astro";
 import WhatsAppFloat from "../../components/WhatsAppFloat.astro";
 import { propiedades } from "../../data/propiedades";
 import { site, whatsappLink } from "../../data/site";
+import { sanitizePublicDescription } from "../../utils/publicText";
 
 export function getStaticPaths() {
   return propiedades.map((p) => ({ params: { slug: p.slug }, props: { p } }));
@@ -12,158 +13,172 @@ export function getStaticPaths() {
 
 const { p } = Astro.props;
 const precioTxt = p.mostrarPrecio && p.precio ? p.precio : "Precio a consultar";
-
+const descripcionPublica = sanitizePublicDescription(p.descripcion, p.colonia);
 const specs = [
-  p.recamaras && { l: "Recámaras", v: p.recamaras, i: "🛏️" },
-  p.banos && { l: "Baños", v: p.banos, i: "🛁" },
-  p.mediosBanos && { l: "Medios baños", v: p.mediosBanos, i: "🚽" },
-  p.estacionamientos && { l: "Estacionamientos", v: p.estacionamientos, i: "🚗" },
-  p.m2Construccion && { l: "Construcción", v: `${p.m2Construccion} m²`, i: "📐" },
-  p.m2Terreno && { l: "Terreno", v: `${p.m2Terreno} m²`, i: "🌳" },
-  p.niveles && { l: "Niveles", v: p.niveles, i: "🏢" },
-  p.anio && { l: "Año", v: p.anio, i: "📅" },
+  p.recamaras && { l: "Recámaras", v: p.recamaras },
+  p.banos && { l: "Baños", v: p.banos },
+  p.mediosBanos && { l: "Medios baños", v: p.mediosBanos },
+  p.estacionamientos && { l: "Estacionamientos", v: p.estacionamientos },
+  p.m2Construccion && { l: "Construcción", v: `${p.m2Construccion} m²` },
+  p.m2Terreno && { l: "Terreno", v: `${p.m2Terreno} m²` },
+  p.niveles && { l: "Niveles", v: p.niveles },
+  p.anio && { l: p.anio >= 1900 ? "Año" : "Antigüedad", v: p.anio >= 1900 ? p.anio : `${p.anio} años` },
 ].filter(Boolean);
-
 const waMsg = `Hola Lourdes, me interesa la propiedad "${p.titulo}" en ${p.colonia}, ${p.alcaldia}. ¿Me das más información?`;
 ---
 
 <Layout
-  title={`${p.titulo} en ${p.operacion} — ${p.colonia}, ${p.alcaldia} | ${site.franquicia}`}
-  description={`${p.tipo} en ${p.operacion} en ${p.colonia}, ${p.alcaldia}, ${p.estado}. ${precioTxt}. Con Lourdes Martínez, Century 21 Grupo Mormos.`}
+  title={`${p.titulo} en ${p.operacion} — ${p.colonia}, ${p.alcaldia} | ${site.nombre}`}
+  description={`${p.tipo} en ${p.operacion} en ${p.colonia}, ${p.alcaldia}, ${p.estado}. ${precioTxt}.`}
+  image={p.imagenes[0]}
 >
   <Header />
-  <main class="mx-auto max-w-6xl px-5 py-8">
-    <!-- Breadcrumb -->
-    <nav class="mb-6 text-sm text-ink/50">
-      <a href="/" class="hover:text-gold-dark">Inicio</a> ·
-      <a href="/propiedades/" class="hover:text-gold-dark">Propiedades</a> ·
-      <span class="text-ink/70">{p.colonia}, {p.alcaldia}</span>
-    </nav>
+  <main id="contenido" class="bg-ivory pb-16 md:pb-24">
+    <section class="border-b border-ink/10 bg-cream">
+      <div class="mx-auto max-w-7xl px-5 py-5 sm:px-7 lg:px-10">
+        <nav class="flex flex-wrap items-center gap-2 text-xs text-ink/46" aria-label="Migas de pan">
+          <a href="/" class="hover:text-gold-dark">Inicio</a><span>/</span>
+          <a href="/propiedades/" class="hover:text-gold-dark">Propiedades</a><span>/</span>
+          <span aria-current="page" class="text-ink/70">{p.colonia}, {p.alcaldia}</span>
+        </nav>
+      </div>
+    </section>
 
-    <div class="grid gap-8 lg:grid-cols-[1.6fr_1fr]">
-      <!-- Galería -->
-      <div>
-        <div class="overflow-hidden rounded-2xl border border-black/5 bg-cream">
-          <img
-            id="foto-principal"
-            src={p.imagenes[0]}
-            alt={`${p.titulo} — foto`}
-            class="aspect-[4/3] h-full w-full cursor-zoom-in object-cover"
-          />
-        </div>
-        {p.imagenes.length > 1 && (
-          <div class="mt-3 grid grid-cols-5 gap-2 sm:grid-cols-6">
-            {p.imagenes.map((img, i) => (
-              <button
-                type="button"
-                class="thumb overflow-hidden rounded-lg border-2 border-transparent transition hover:border-gold"
-                data-src={img}
-                aria-label={`Ver foto ${i + 1}`}
-              >
-                <img src={img} alt={`${p.titulo} miniatura ${i + 1}`} loading="lazy" class="aspect-square h-full w-full object-cover" />
-              </button>
-            ))}
+    <div class="mx-auto max-w-7xl px-5 pt-7 sm:px-7 md:pt-10 lg:px-10">
+      <div class="grid gap-9 lg:grid-cols-[1.55fr_0.75fr] xl:gap-12">
+        <section aria-label="Galería de la propiedad">
+          <button id="open-gallery" type="button" class="group relative block w-full overflow-hidden rounded-[1.8rem] bg-stone text-left" aria-label="Ampliar foto principal">
+            <img id="foto-principal" src={p.imagenes[0]} alt={`${p.titulo} — foto 1`} width="1200" height="900" fetchpriority="high" class="aspect-[4/3] h-full w-full object-cover transition duration-700 group-hover:scale-[1.015]" />
+            <span class="absolute bottom-5 right-5 rounded-full border border-white/20 bg-black/55 px-4 py-2 text-xs font-semibold text-white backdrop-blur-md">Ampliar · {p.imagenes.length} fotos</span>
+          </button>
+
+          {p.imagenes.length > 1 && (
+            <div class="mt-3 flex gap-2 overflow-x-auto pb-2" aria-label="Miniaturas">
+              {p.imagenes.map((img, i) => (
+                <button type="button" class:list={["thumb shrink-0 overflow-hidden rounded-xl border-2 transition", i === 0 ? "border-gold" : "border-transparent"]} data-src={img} data-index={i} aria-label={`Ver foto ${i + 1}`} aria-current={i === 0 ? "true" : undefined}>
+                  <img src={img} alt="" loading="lazy" width="160" height="120" class="h-20 w-24 object-cover sm:h-24 sm:w-32" />
+                </button>
+              ))}
+            </div>
+          )}
+        </section>
+
+        <aside class="lg:sticky lg:top-24 lg:self-start">
+          <div class="premium-card rounded-[1.7rem] p-6 sm:p-8">
+            <div class="flex items-center justify-between gap-4">
+              <span class="rounded-full bg-ink px-3 py-1.5 text-[0.62rem] font-semibold uppercase tracking-[0.16em] text-gold-light">En {p.operacion}</span>
+              <span class="text-xs text-ink/40">{p.tipo}</span>
+            </div>
+            <h1 class="mt-5 text-3xl font-semibold leading-tight">{p.titulo}</h1>
+            <p class="mt-2 text-sm text-ink/50">{p.colonia}, {p.alcaldia}, {p.estado}</p>
+            <p class="mt-6 font-display text-3xl font-semibold text-gold-dark">{precioTxt}</p>
+
+            <dl class="mt-7 grid grid-cols-2 gap-px overflow-hidden rounded-xl border border-ink/10 bg-ink/10">
+              {specs.map((s) => (
+                <div class="bg-white p-3.5">
+                  <dt class="text-[0.62rem] uppercase tracking-[0.12em] text-ink/40">{s.l}</dt>
+                  <dd class="mt-1 font-semibold text-ink">{s.v}</dd>
+                </div>
+              ))}
+            </dl>
+
+            <a href={whatsappLink(waMsg)} target="_blank" rel="noopener" class="btn-primary mt-7 w-full">Solicitar información</a>
+            <a href={`tel:+52${site.telefonos[0].replace(/\s/g, "")}`} class="btn-ghost-dark mt-3 w-full">Llamar a Lourdes</a>
+            <p class="mt-5 border-t border-ink/10 pt-5 text-center text-[0.68rem] leading-5 text-ink/43">Acompañamiento personal y honorarios profesionales al cierre.</p>
           </div>
+        </aside>
+      </div>
+
+      <div class="mt-14 grid gap-12 border-t border-ink/10 pt-12 lg:grid-cols-[1.2fr_0.8fr]">
+        {descripcionPublica && (
+          <section>
+            <p class="eyebrow">Sobre la propiedad</p>
+            <h2 class="mt-5 text-3xl font-semibold">Descripción</h2>
+            <div class="mt-5 whitespace-pre-line text-base leading-8 text-ink/65">{descripcionPublica}</div>
+          </section>
+        )}
+        {p.amenidades && p.amenidades.length > 0 && (
+          <section>
+            <p class="eyebrow">Lo que incluye</p>
+            <h2 class="mt-5 text-3xl font-semibold">Características</h2>
+            <ul class="mt-5 grid gap-x-6 gap-y-3 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2">
+              {p.amenidades.map((a) => <li class="flex items-start gap-3 border-b border-ink/[0.07] pb-3 text-sm text-ink/65"><span class="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-gold-dark"></span>{a}</li>)}
+            </ul>
+          </section>
         )}
       </div>
 
-      <!-- Info -->
-      <aside class="lg:sticky lg:top-24 lg:self-start">
-        <span class="inline-block rounded-full bg-ink px-3 py-1 text-xs font-semibold uppercase tracking-wide text-gold">
-          {p.operacion}
-        </span>
-        <h1 class="mt-3 font-display text-2xl font-bold leading-tight">{p.titulo}</h1>
-        <p class="mt-1 text-ink/60">{p.colonia}, {p.alcaldia}, {p.estado}</p>
-        <p class="mt-4 font-display text-2xl font-bold text-gold-dark">{precioTxt}</p>
-
-        <div class="mt-6 grid grid-cols-2 gap-3">
-          {specs.map((s) => (
-            <div class="rounded-lg border border-black/5 bg-cream px-3 py-2 text-sm">
-              <span class="mr-1">{s.i}</span>
-              <span class="font-semibold">{s.v}</span>
-              <span class="text-ink/50"> · {s.l}</span>
-            </div>
-          ))}
-        </div>
-
-        <a
-          href={whatsappLink(waMsg)}
-          target="_blank"
-          rel="noopener"
-          class="mt-6 block rounded-full bg-gold px-6 py-3 text-center font-semibold text-ink transition hover:bg-gold-dark"
-        >
-          Solicitar información por WhatsApp
-        </a>
-        <a
-          href={`tel:+52${site.telefonos[0].replace(/\s/g, "")}`}
-          class="mt-3 block rounded-full border border-ink px-6 py-3 text-center font-semibold transition hover:bg-ink hover:text-white"
-        >
-          Llamar: {site.telefonos[0]}
-        </a>
-
-        <p class="mt-4 rounded-lg bg-cream p-3 text-xs text-ink/60">
-          💡 Con Lourdes no pagas comisión ni gastos hasta que se cierre la operación.
-        </p>
-      </aside>
-    </div>
-
-    <!-- Descripción y amenidades -->
-    <div class="mt-12 grid gap-10 lg:grid-cols-[1.6fr_1fr]">
-      {p.descripcion && (
-        <div>
-          <h2 class="font-display text-xl font-bold">Descripción</h2>
-          <div class="mt-3 whitespace-pre-line leading-relaxed text-ink/80">{p.descripcion}</div>
-        </div>
-      )}
-      {p.amenidades && p.amenidades.length > 0 && (
-        <div>
-          <h2 class="font-display text-xl font-bold">Características</h2>
-          <ul class="mt-3 grid grid-cols-2 gap-2 text-sm text-ink/80">
-            {p.amenidades.map((a) => (
-              <li class="flex items-center gap-2">
-                <span class="text-gold">✓</span> {a}
-              </li>
-            ))}
-          </ul>
-        </div>
-      )}
-    </div>
-
-    <div class="mt-12 border-t border-black/5 pt-8">
-      <a href="/propiedades/" class="font-semibold text-gold-dark hover:underline">← Ver todas las propiedades</a>
+      <div class="mt-14 rounded-[1.8rem] bg-ink px-7 py-8 text-white sm:flex sm:items-center sm:justify-between sm:gap-8 lg:px-10">
+        <div><p class="font-display text-2xl font-semibold text-gold-light">¿Quieres conocerla?</p><p class="mt-2 text-sm text-white/52">Agenda una conversación y revisamos si encaja con lo que buscas.</p></div>
+        <a href={whatsappLink(waMsg)} target="_blank" rel="noopener" class="btn-primary mt-6 shrink-0 sm:mt-0">Agendar visita</a>
+      </div>
     </div>
   </main>
   <Footer />
   <WhatsAppFloat />
 
-  <!-- Lightbox -->
-  <div id="lightbox" class="fixed inset-0 z-[60] hidden items-center justify-center bg-black/90 p-4">
-    <button id="lb-close" class="absolute right-5 top-5 text-3xl text-white" aria-label="Cerrar">×</button>
-    <img id="lb-img" src="" alt="Foto ampliada" class="max-h-[90vh] max-w-[95vw] rounded-lg object-contain" />
+  <div id="lightbox" class="fixed inset-0 z-[70] hidden items-center justify-center bg-black/95 p-4" role="dialog" aria-modal="true" aria-label="Galería ampliada" aria-hidden="true">
+    <button id="lb-close" class="absolute right-4 top-4 z-10 flex h-11 w-11 items-center justify-center rounded-full border border-white/20 bg-black/40 text-2xl text-white" aria-label="Cerrar galería">×</button>
+    <button id="lb-prev" class="absolute left-3 z-10 flex h-11 w-11 items-center justify-center rounded-full border border-white/20 bg-black/40 text-xl text-white sm:left-6" aria-label="Foto anterior">←</button>
+    <figure class="flex max-h-[94vh] max-w-[92vw] flex-col items-center">
+      <img id="lb-img" src="" alt="Foto ampliada de la propiedad" class="max-h-[84vh] max-w-full rounded-xl object-contain" />
+      <figcaption id="lb-count" class="mt-3 text-xs tracking-[0.12em] text-white/70" aria-live="polite"></figcaption>
+    </figure>
+    <button id="lb-next" class="absolute right-3 z-10 flex h-11 w-11 items-center justify-center rounded-full border border-white/20 bg-black/40 text-xl text-white sm:right-6" aria-label="Foto siguiente">→</button>
   </div>
 
-  <script is:inline>
+  <script is:inline define:vars={{ images: p.imagenes }}>
     (function () {
       const main = document.getElementById("foto-principal");
-      document.querySelectorAll(".thumb").forEach((btn) => {
-        btn.addEventListener("click", () => {
-          const src = btn.getAttribute("data-src");
-          if (src) main.src = src;
-          document.querySelectorAll(".thumb").forEach((b) => b.classList.remove("border-gold"));
-          btn.classList.add("border-gold");
-        });
+      const open = document.getElementById("open-gallery");
+      const dialog = document.getElementById("lightbox");
+      const dialogImg = document.getElementById("lb-img");
+      const count = document.getElementById("lb-count");
+      const closeButton = document.getElementById("lb-close");
+      const prev = document.getElementById("lb-prev");
+      const next = document.getElementById("lb-next");
+      const thumbs = Array.from(document.querySelectorAll(".thumb"));
+      if (!main || !open || !dialog || !dialogImg || !closeButton || !count) return;
+      let current = 0;
+      let lastFocus = null;
+
+      function select(index) {
+        current = (index + images.length) % images.length;
+        main.src = images[current];
+        main.alt = `Foto ${current + 1} de la propiedad`;
+        thumbs.forEach((thumb, i) => { thumb.classList.toggle("border-gold", i === current); thumb.classList.toggle("border-transparent", i !== current); thumb.setAttribute("aria-current", i === current ? "true" : "false"); });
+      }
+      function renderDialog() {
+        dialogImg.src = images[current];
+        dialogImg.alt = `Foto ampliada ${current + 1} de ${images.length} de la propiedad`;
+        count.textContent = `Foto ${current + 1} de ${images.length}`;
+      }
+      function show() { lastFocus = document.activeElement; renderDialog(); dialog.classList.remove("hidden"); dialog.classList.add("flex"); dialog.setAttribute("aria-hidden", "false"); document.body.style.overflow = "hidden"; closeButton.focus(); }
+      function hide() { dialog.classList.add("hidden"); dialog.classList.remove("flex"); dialog.setAttribute("aria-hidden", "true"); document.body.style.overflow = ""; lastFocus?.focus?.(); }
+      thumbs.forEach((thumb, i) => thumb.addEventListener("click", () => select(i)));
+      open.addEventListener("click", show);
+      closeButton.addEventListener("click", hide);
+      prev?.addEventListener("click", () => { select(current - 1); renderDialog(); });
+      next?.addEventListener("click", () => { select(current + 1); renderDialog(); });
+      dialog.addEventListener("click", (e) => { if (e.target === dialog) hide(); });
+      document.addEventListener("keydown", (e) => {
+        if (dialog.getAttribute("aria-hidden") === "true") return;
+        if (e.key === "Escape") hide();
+        if (e.key === "ArrowLeft") { select(current - 1); renderDialog(); }
+        if (e.key === "ArrowRight") { select(current + 1); renderDialog(); }
+        if (e.key === "Tab") {
+          const focusable = [closeButton, prev, next].filter(Boolean);
+          const first = focusable[0];
+          const last = focusable[focusable.length - 1];
+          if (e.shiftKey && document.activeElement === first) {
+            e.preventDefault();
+            last.focus();
+          } else if (!e.shiftKey && document.activeElement === last) {
+            e.preventDefault();
+            first.focus();
+          }
+        }
       });
-      const lb = document.getElementById("lightbox");
-      const lbImg = document.getElementById("lb-img");
-      main.addEventListener("click", () => {
-        lbImg.src = main.src;
-        lb.classList.remove("hidden");
-        lb.classList.add("flex");
-      });
-      function close() { lb.classList.add("hidden"); lb.classList.remove("flex"); }
-      document.getElementById("lb-close").addEventListener("click", close);
-      lb.addEventListener("click", (e) => { if (e.target === lb) close(); });
-      document.addEventListener("keydown", (e) => { if (e.key === "Escape") close(); });
     })();
   </script>
 </Layout>

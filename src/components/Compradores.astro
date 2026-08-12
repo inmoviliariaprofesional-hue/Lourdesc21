@@ -1,51 +1,34 @@
 ---
 import { whatsappLink } from "../data/site";
-
 const pasos = [
-  "Definimos qué buscas y cuánto crédito te autorizan (INFONAVIT, FOVISSSTE o bancario).",
-  "Te muestro solo propiedades que encajan con tu presupuesto y zona.",
-  "Te acompaño en visitas, oferta, trámites y firma ante notario.",
+  ["01", "Perfil y capacidad", "Definimos zona, estilo de vida, presupuesto y alternativas de crédito."],
+  ["02", "Selección inteligente", "Filtramos el mercado para visitar únicamente opciones con sentido."],
+  ["03", "Negociación y cierre", "Te acompaño en oferta, documentación, firma y entrega del inmueble."],
 ];
 ---
 
-<section id="compradores" class="bg-cream">
-  <div class="section reveal grid items-center gap-10 md:grid-cols-2">
-    <div>
-      <p class="text-sm font-semibold uppercase tracking-widest text-gold-dark">Para compradores</p>
-      <h2 class="mt-2 font-display text-3xl font-bold">¿Quieres comprar tu casa?</h2>
-      <p class="mt-4 text-ink/70">
-        Comprar tu primer patrimonio no tiene por qué ser complicado. Te guío paso a paso, incluso si no sabes por dónde empezar con el crédito.
-      </p>
-      <ol class="mt-6 space-y-4">
-        {pasos.map((paso, i) => (
-          <li class="flex gap-3">
-            <span class="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-gold font-semibold text-ink">{i + 1}</span>
-            <span class="text-ink/80">{paso}</span>
-          </li>
-        ))}
-      </ol>
-      <a
-        href={whatsappLink("Hola Lourdes, quiero comprar una propiedad. ¿Me ayudas?")}
-        target="_blank"
-        rel="noopener"
-        class="mt-8 inline-block rounded-full bg-ink px-6 py-3 font-semibold text-white transition hover:bg-ink-soft"
-      >
-        Quiero comprar
-      </a>
+<section id="compradores" class="bg-ivory">
+  <div class="section grid items-center gap-14 lg:grid-cols-[0.86fr_1.14fr]">
+    <div class="reveal">
+      <p class="eyebrow">Para compradores</p>
+      <h2 class="section-title mt-5">No busques más. Elige mejor.</h2>
+      <p class="mt-6 max-w-xl text-lg leading-8 text-ink/60">Comprar un patrimonio exige más que encontrar una foto atractiva. Requiere contexto, números y una negociación bien conducida.</p>
+      <div class="mt-8 flex flex-col gap-3 sm:flex-row">
+        <a href="/propiedades/" class="btn-primary">Explorar propiedades</a>
+        <a href={whatsappLink("Hola Lourdes, quiero definir mi perfil de compra y conocer opciones.")} target="_blank" rel="noopener" class="btn-ghost-dark">Definir mi búsqueda</a>
+      </div>
     </div>
-    <div class="rounded-2xl border border-gold/30 bg-white p-8 shadow-sm">
-      <h3 class="font-display text-xl font-semibold">Calcula tu compra</h3>
-      <p class="mt-2 text-sm text-ink/70">
-        ¿No sabes cuánto crédito te alcanza? Te ayudo a estimarlo sin costo y sin compromiso.
-      </p>
-      <a
-        href={whatsappLink("Hola Lourdes, quiero saber cuánto crédito me autorizan.")}
-        target="_blank"
-        rel="noopener"
-        class="mt-6 inline-block rounded-full border border-ink px-6 py-3 text-sm font-semibold transition hover:bg-ink hover:text-white"
-      >
-        Estimar mi crédito
-      </a>
-    </div>
+
+    <ol class="reveal overflow-hidden rounded-[2rem] border border-ink/10 bg-cream">
+      {pasos.map(([numero, titulo, texto]) => (
+        <li class="grid gap-4 border-b border-ink/10 p-7 last:border-b-0 sm:grid-cols-[4rem_1fr] md:p-9">
+          <span class="font-display text-sm font-semibold tracking-[0.18em] text-gold-dark">{numero}</span>
+          <div>
+            <h3 class="text-xl font-semibold">{titulo}</h3>
+            <p class="mt-2 text-sm leading-7 text-ink/58">{texto}</p>
+          </div>
+        </li>
+      ))}
+    </ol>
   </div>
 </section>

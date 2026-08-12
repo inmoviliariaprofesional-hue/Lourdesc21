@@ -1,66 +1,51 @@
 ---
 import { site, whatsappLink } from "../data/site";
+const redes = [
+  ["Instagram", site.redes.instagram],
+  ["Facebook", site.redes.facebook],
+  ["TikTok", site.redes.tiktok],
+];
 ---
 
-<section id="contacto" class="bg-cream">
+<section id="contacto" class="bg-ivory">
   <div class="section">
-    <div class="reveal grid gap-10 md:grid-cols-2">
-      <div>
-        <h2 class="font-display text-3xl font-bold">Hablemos</h2>
-        <p class="mt-3 text-ink/70">
-          Estoy para ayudarte. Escríbeme por el medio que prefieras y te respondo lo antes posible.
-        </p>
-
-        <ul class="mt-8 space-y-4 text-sm">
-          <li class="flex items-center gap-3">
-            <span class="text-xl">💬</span>
-            <a href={whatsappLink()} target="_blank" rel="noopener" class="font-semibold hover:text-gold-dark">
-              WhatsApp: {site.telefonos[0]}
-            </a>
-          </li>
-          {site.telefonos.map((tel) => (
-            <li class="flex items-center gap-3">
-              <span class="text-xl">📞</span>
-              <a href={`tel:+52${tel.replace(/\s/g, "")}`} class="hover:text-gold-dark">{tel}</a>
-            </li>
-          ))}
-          <li class="flex items-center gap-3">
-            <span class="text-xl">✉️</span>
-            <a href={`mailto:${site.emailOficial}`} class="hover:text-gold-dark">{site.emailOficial}</a>
-          </li>
-          <li class="flex items-center gap-3">
-            <span class="text-xl">🏢</span>
-            <a href={`tel:+52${site.telefonoOficina.replace(/\s/g, "")}`} class="hover:text-gold-dark">Oficina: {site.telefonoOficina}</a>
-          </li>
-          <li class="flex items-start gap-3">
-            <span class="text-xl">📍</span>
-            <span>{site.direccionOficina}</span>
-          </li>
-          <li class="flex items-center gap-3">
-            <span class="text-xl">🗺️</span>
-            <span>Cobertura: {site.cobertura}</span>
-          </li>
-        </ul>
-
-        <div class="mt-8 flex gap-4">
-          <a href={site.redes.instagram} target="_blank" rel="noopener" class="rounded-full border border-ink px-4 py-2 text-sm font-semibold transition hover:bg-ink hover:text-white">Instagram</a>
-          <a href={site.redes.facebook} target="_blank" rel="noopener" class="rounded-full border border-ink px-4 py-2 text-sm font-semibold transition hover:bg-ink hover:text-white">Facebook</a>
-          <a href={site.redes.tiktok} target="_blank" rel="noopener" class="rounded-full border border-ink px-4 py-2 text-sm font-semibold transition hover:bg-ink hover:text-white">TikTok</a>
+    <div class="reveal overflow-hidden rounded-[2.2rem] bg-ink text-white">
+      <div class="grid lg:grid-cols-[1.12fr_0.88fr]">
+        <div class="relative p-7 sm:p-10 lg:p-14">
+          <div class="premium-grid absolute inset-0 opacity-45"></div>
+          <div class="relative">
+            <p class="eyebrow !text-gold">Tu siguiente paso</p>
+            <h2 class="section-title mt-5 max-w-2xl">Hablemos de lo que quieres lograr.</h2>
+            <p class="mt-6 max-w-xl text-base leading-7 text-white/58">Una conversación de 15 minutos puede darte claridad sobre tu compra, venta, renta o inversión.</p>
+            <a href={whatsappLink("Hola Lourdes, quiero agendar una conversación de 15 minutos.")} target="_blank" rel="noopener" class="btn-primary mt-9">Agendar conversación</a>
+          </div>
         </div>
-      </div>
 
-      <div class="flex items-center justify-center rounded-2xl border border-gold/30 bg-white p-8 text-center">
-        <div>
-          <p class="font-display text-xl font-semibold">¿List@ para dar el paso?</p>
-          <p class="mt-2 text-sm text-ink/70">Agenda una llamada de 15 minutos sin compromiso.</p>
-          <a
-            href={whatsappLink("Hola Lourdes, quiero agendar una llamada de 15 minutos.")}
-            target="_blank"
-            rel="noopener"
-            class="mt-6 inline-block rounded-full bg-gold px-6 py-3 font-semibold text-ink transition hover:bg-gold-dark"
-          >
-            Agendar por WhatsApp
-          </a>
+        <div class="border-t border-white/10 bg-white/[0.035] p-7 sm:p-10 lg:border-l lg:border-t-0 lg:p-12">
+          <p class="text-[0.65rem] font-semibold uppercase tracking-[0.2em] text-gold">Contacto directo</p>
+          <dl class="mt-7 space-y-6 text-sm">
+            <div>
+              <dt class="text-white/38">WhatsApp</dt>
+              <dd class="mt-1"><a href={whatsappLink()} target="_blank" rel="noopener" class="font-semibold text-white hover:text-gold-light">{site.telefonos[0]}</a></dd>
+            </div>
+            <div>
+              <dt class="text-white/38">Correo</dt>
+              <dd class="mt-1 break-all"><a href={`mailto:${site.emailOficial}`} class="font-semibold text-white hover:text-gold-light">{site.emailOficial}</a></dd>
+            </div>
+            <div>
+              <dt class="text-white/38">Oficina</dt>
+              <dd class="mt-1 leading-6 text-white/75">{site.direccionOficina}</dd>
+            </div>
+            <div>
+              <dt class="text-white/38">Cobertura</dt>
+              <dd class="mt-1 text-white/75">{site.cobertura}</dd>
+            </div>
+          </dl>
+          <div class="mt-8 flex flex-wrap gap-4 border-t border-white/10 pt-6">
+            {redes.map(([nombre, href]) => (
+              <a href={href} target="_blank" rel="noopener" class="text-xs font-semibold text-white/55 transition hover:text-gold-light">{nombre} ↗</a>
+            ))}
+          </div>
         </div>
       </div>
     </div>

@@ -1,51 +1,75 @@
 ---
-import { site, whatsappLink } from "../data/site";
+import { site } from "../data/site";
+import { propiedades } from "../data/propiedades";
+
+const mercados = new Set(propiedades.map((p) => p.estado)).size;
 ---
 
-<section id="inicio" class="relative overflow-hidden bg-ink text-white">
-  <div class="mx-auto grid max-w-6xl items-center gap-10 px-5 py-20 md:grid-cols-2 md:py-28">
-    <div>
-      <p class="mb-3 text-sm font-semibold uppercase tracking-widest text-gold">
-        {site.rol} · {site.franquicia}
-      </p>
-      <h1 class="font-display text-4xl font-bold leading-tight md:text-5xl">
-        {site.tagline}
+<section id="inicio" class="noise-overlay relative isolate overflow-hidden bg-ink text-white">
+  <div class="premium-grid absolute inset-0 -z-20"></div>
+  <div class="absolute -left-40 top-20 -z-10 h-[32rem] w-[32rem] rounded-full bg-gold/10 blur-[130px]"></div>
+  <div class="absolute -right-32 bottom-0 -z-10 h-[30rem] w-[30rem] rounded-full bg-[#263445]/35 blur-[140px]"></div>
+
+  <div class="mx-auto grid min-h-[calc(100svh-76px)] max-w-7xl items-center gap-10 px-5 pb-10 pt-14 sm:px-7 md:pt-20 lg:grid-cols-[1.08fr_0.92fr] lg:px-10 lg:pb-14 lg:pt-16">
+    <div class="relative z-10 max-w-3xl">
+      <p class="eyebrow !text-gold">Century 21 · Grupo Mormos</p>
+      <h1 class="display-title mt-6 max-w-3xl">
+        Decisiones inmobiliarias
+        <span class="block bg-gradient-to-r from-gold-light via-gold to-[#8d713c] bg-clip-text text-transparent">a la altura de tu patrimonio.</span>
       </h1>
-      <p class="mt-5 max-w-md text-white/80">
-        {site.descripcion}
+      <p class="mt-7 max-w-xl text-base leading-8 text-white/68 md:text-lg">
+        Estrategia, acompañamiento y acceso a un portafolio seleccionado para comprar, vender, rentar o invertir con claridad.
       </p>
 
-      <div class="mt-8 flex flex-wrap gap-3">
-        <a
-          href={whatsappLink()}
-          target="_blank"
-          rel="noopener"
-          class="rounded-full bg-gold px-6 py-3 font-semibold text-ink transition hover:bg-gold-dark"
-        >
-          Hablemos por WhatsApp
+      <div class="mt-9 flex flex-col gap-3 sm:flex-row">
+        <a href="/propiedades/" class="btn-primary">
+          Explorar propiedades
+          <span aria-hidden="true">→</span>
         </a>
-        <a
-          href="#analisis"
-          class="rounded-full border border-white/30 px-6 py-3 font-semibold transition hover:border-gold hover:text-gold"
-        >
-          Análisis de mercado gratis
-        </a>
+        <a href="#analisis" class="btn-secondary">Conocer el valor de mi propiedad</a>
       </div>
 
-      <p class="mt-6 text-sm text-white/60">
-        📍 Especialista en Jardín Balbuena — atiendo {site.cobertura}
-      </p>
+      <div class="mt-9 flex flex-wrap items-center gap-x-6 gap-y-3 text-xs text-white/48">
+        <span class="flex items-center gap-2"><span class="h-1.5 w-1.5 rounded-full bg-gold"></span> Especialista en Jardín Balbuena</span>
+        <span class="flex items-center gap-2"><span class="h-1.5 w-1.5 rounded-full bg-gold"></span> Cobertura en {site.cobertura}</span>
+      </div>
     </div>
 
-    <!-- Foto profesional de Lourdes (PNG con fondo transparente, flota sobre el Hero) -->
-    <div class="relative mx-auto flex w-full max-w-sm items-end justify-center self-end">
-      <div aria-hidden="true" class="absolute bottom-0 h-64 w-64 rounded-full bg-gold/10 blur-3xl"></div>
+    <div class="relative mx-auto flex w-full max-w-[34rem] items-end justify-center self-end lg:h-[min(72vh,650px)]">
+      <div class="absolute inset-x-4 bottom-3 top-16 rounded-t-[12rem] border border-white/[0.09] bg-gradient-to-b from-white/[0.07] to-white/[0.01]"></div>
+      <div class="absolute bottom-10 left-1/2 h-64 w-64 -translate-x-1/2 rounded-full bg-gold/20 blur-[95px]"></div>
+      <div class="absolute right-0 top-16 hidden items-center gap-2 rounded-full border border-white/10 bg-black/25 px-4 py-2 text-[0.65rem] uppercase tracking-[0.16em] text-white/60 backdrop-blur-md sm:flex">
+        <span class="h-1.5 w-1.5 rounded-full bg-gold"></span> Asesoría certificada
+      </div>
       <img
         src="/images/lourdes.png"
-        alt={`${site.nombre}, ${site.rol} en ${site.franquicia}`}
-        class="relative z-10 max-h-[520px] w-auto object-contain drop-shadow-2xl"
-        onerror="this.style.display='none'; const b=document.createElement('div'); b.className='relative z-10 flex aspect-[4/5] w-full max-w-xs items-center justify-center rounded-2xl border border-gold/30 bg-ink-soft'; b.innerHTML='<span class=\'text-white/40 text-sm px-6 text-center\'>Aquí va la foto de Lourdes (fondo transparente)</span>'; this.replaceWith(b);"
+        alt={`${site.nombre}, ${site.rol}`}
+        width="512"
+        height="1024"
+        fetchpriority="high"
+        class="relative z-10 max-h-[70vh] w-auto max-w-full object-contain object-bottom drop-shadow-[0_30px_45px_rgba(0,0,0,0.45)]"
       />
+      <div class="glass-panel absolute bottom-5 left-0 z-20 hidden rounded-2xl px-5 py-4 sm:block">
+        <p class="font-display text-sm font-semibold text-white">{site.nombre}</p>
+        <p class="mt-0.5 text-[0.66rem] uppercase tracking-[0.14em] text-gold">{site.rol}</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="border-t border-white/[0.08] bg-black/15">
+    <div class="mx-auto grid max-w-7xl grid-cols-3 divide-x divide-white/[0.08] px-5 sm:px-7 lg:px-10">
+      <div class="py-5 pr-3 md:py-6">
+        <p class="font-display text-xl font-semibold text-gold-light md:text-2xl">{propiedades.length}</p>
+        <p class="mt-1 text-[0.6rem] uppercase tracking-[0.14em] text-white/45 sm:text-[0.68rem]">Oportunidades activas</p>
+      </div>
+      <div class="px-4 py-5 md:px-8 md:py-6">
+        <p class="font-display text-xl font-semibold text-gold-light md:text-2xl">{mercados}</p>
+        <p class="mt-1 text-[0.6rem] uppercase tracking-[0.14em] text-white/45 sm:text-[0.68rem]">Mercados actuales</p>
+      </div>
+      <div class="py-5 pl-4 md:py-6 md:pl-8">
+        <p class="font-display text-xl font-semibold text-gold-light md:text-2xl">Al cierre</p>
+        <p class="mt-1 text-[0.6rem] uppercase tracking-[0.14em] text-white/45 sm:text-[0.68rem]">Honorarios profesionales</p>
+      </div>
     </div>
   </div>
 </section>
