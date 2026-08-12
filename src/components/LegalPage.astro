@@ -1,0 +1,52 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Header from "./Header.astro";
+import Footer from "./Footer.astro";
+import WhatsAppFloat from "./WhatsAppFloat.astro";
+
+interface Props {
+  title: string;
+  description: string;
+  eyebrow: string;
+  intro: string;
+  updated: string;
+}
+
+const { title, description, eyebrow, intro, updated } = Astro.props;
+---
+
+<Layout title={`${title} | Lourdes Martínez`} description={description}>
+  <Header />
+  <main id="contenido" class="bg-ivory">
+    <section class="relative overflow-hidden bg-ink text-white">
+      <div class="premium-grid absolute inset-0 opacity-60"></div>
+      <div class="absolute -right-28 top-8 h-96 w-96 rounded-full bg-gold/12 blur-[120px]"></div>
+      <div class="section relative py-16 md:py-24">
+        <nav aria-label="Migas de pan" class="mb-10 flex items-center gap-2 text-xs text-white/55">
+          <a href="/" class="transition hover:text-gold-light">Inicio</a>
+          <span aria-hidden="true">/</span>
+          <span aria-current="page">{title}</span>
+        </nav>
+        <p class="eyebrow text-gold-light">{eyebrow}</p>
+        <h1 class="mt-6 max-w-4xl text-4xl font-semibold leading-[1.02] tracking-[-0.055em] sm:text-5xl lg:text-7xl">{title}</h1>
+        <p class="mt-7 max-w-3xl text-base leading-8 text-white/65 sm:text-lg">{intro}</p>
+        <p class="mt-8 text-[0.68rem] font-semibold uppercase tracking-[0.18em] text-gold-light">Última actualización · {updated}</p>
+      </div>
+    </section>
+
+    <div class="section grid items-start gap-10 lg:grid-cols-[0.34fr_0.66fr] lg:gap-16">
+      <aside class="premium-card rounded-[1.5rem] p-6 lg:sticky lg:top-[100px]">
+        <p class="text-[0.65rem] font-semibold uppercase tracking-[0.2em] text-gold-dark">En esta página</p>
+        <nav aria-label={`Contenido de ${title}`} class="legal-index mt-5">
+          <slot name="index" />
+        </nav>
+      </aside>
+
+      <article class="legal-copy min-w-0">
+        <slot />
+      </article>
+    </div>
+  </main>
+  <Footer />
+  <WhatsAppFloat />
+</Layout>

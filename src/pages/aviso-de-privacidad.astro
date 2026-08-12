@@ -1,0 +1,132 @@
+---
+import LegalPage from "../components/LegalPage.astro";
+import { site } from "../data/site";
+
+const emailSubject = encodeURIComponent("Solicitud de derechos ARCO / privacidad");
+---
+
+<LegalPage
+  title="Aviso de Privacidad"
+  eyebrow="Protección de datos personales"
+  description={`Conoce cómo ${site.nombreLegal} recaba, utiliza y protege tus datos personales durante la atención y los servicios inmobiliarios.`}
+  intro="Tu confianza también se protege con información clara. Este aviso explica qué datos podemos recibir, para qué los utilizamos y cómo puedes ejercer tus derechos."
+  updated={site.actualizacionLegal}
+>
+  <ol slot="index">
+    <li><a href="#responsable">Responsable</a></li>
+    <li><a href="#datos">Datos que tratamos</a></li>
+    <li><a href="#finalidades">Finalidades</a></li>
+    <li><a href="#transferencias">Transferencias</a></li>
+    <li><a href="#conservacion">Conservación y seguridad</a></li>
+    <li><a href="#derechos-arco">Derechos ARCO</a></li>
+    <li><a href="#tecnologias">Sitio y tecnologías</a></li>
+    <li><a href="#menores">Personas menores</a></li>
+    <li><a href="#cambios">Cambios al aviso</a></li>
+  </ol>
+
+  <p class="legal-lead">
+    Este Aviso de Privacidad Integral se emite de conformidad con la Ley Federal de Protección de Datos Personales en Posesión de los Particulares y demás disposiciones aplicables en México.
+  </p>
+
+  <section id="responsable">
+    <h2>1. Identidad y domicilio de la responsable</h2>
+    <p>
+      <strong>{site.nombreLegal}</strong>, quien se presenta comercialmente como {site.nombre} y presta servicios inmobiliarios como asesora afiliada a {site.franquicia}, es responsable del tratamiento de los datos personales que recaba directamente.
+    </p>
+    <p>
+      Domicilio: <strong>{site.direccionOficina}</strong>.<br />
+      Correo para asuntos de privacidad: <a href={`mailto:${site.emailOficial}?subject=${emailSubject}`}>{site.emailOficial}</a>.<br />
+      Teléfono: <a href={`tel:+52${site.telefonos[0].replace(/\s/g, "")}`}>{site.telefonos[0]}</a>.
+    </p>
+    <p>{site.franquicia} y las demás oficinas o integrantes del sistema Century 21 pueden actuar como responsables independientes cuando recaben o decidan por su cuenta sobre datos personales. Cada oficina es de propiedad y operación independiente.</p>
+  </section>
+
+  <section id="datos">
+    <h2>2. Datos personales que podemos tratar</h2>
+    <p>Según la etapa de la consulta u operación inmobiliaria, podemos recibir las siguientes categorías:</p>
+    <ul>
+      <li><strong>Identificación y contacto:</strong> nombre, firma, teléfono, correo electrónico, domicilio, identificación oficial, estado civil y datos de representantes, copropietarios o cónyuge cuando sean necesarios.</li>
+      <li><strong>Consulta y perfil inmobiliario:</strong> mensaje, tipo de operación, inmueble de interés, preferencias, presupuesto, ubicación y contenido de las comunicaciones.</li>
+      <li><strong>Datos del inmueble y documentación:</strong> ubicación, características, título o escritura, antecedentes registrales, predial, agua, servicios, régimen de propiedad, gravámenes, permisos y documentación relacionada.</li>
+      <li><strong>Patrimoniales, financieros y fiscales:</strong> precio, capacidad de pago, información crediticia, ingresos, cuenta o medio de pago, constancia fiscal e impuestos, únicamente cuando sean necesarios para evaluar, documentar o cerrar una operación.</li>
+      <li><strong>Datos de la operación:</strong> ofertas, contratos, comprobantes, datos notariales, pólizas, entregas, incidencias y seguimiento.</li>
+      <li><strong>Datos técnicos:</strong> dirección IP, navegador, dispositivo, fecha, hora y registros de seguridad que puedan generar los proveedores de alojamiento o recursos técnicos.</li>
+    </ul>
+    <p><strong>Datos sensibles:</strong> el sitio no solicita datos personales sensibles. Si una situación excepcional requiriera alguno, se explicará la finalidad y se solicitará el consentimiento expreso correspondiente antes de tratarlo.</p>
+    <p>No envíes identificaciones, escrituras, datos bancarios ni documentos patrimoniales mediante el formulario inicial del sitio. Lourdes te indicará un canal y el momento adecuados si fueran necesarios.</p>
+  </section>
+
+  <section id="finalidades">
+    <h2>3. Finalidades del tratamiento</h2>
+    <h3>Finalidades primarias</h3>
+    <p>Los datos se utilizarán cuando sean necesarios para:</p>
+    <ul>
+      <li>Responder solicitudes de información, identificar necesidades y continuar la conversación por teléfono, correo o WhatsApp.</li>
+      <li>Agendar entrevistas, visitas, análisis de mercado, valuaciones u otras actividades solicitadas.</li>
+      <li>Identificar y presentar propiedades compatibles con las preferencias de una persona interesada.</li>
+      <li>Evaluar la viabilidad comercial, documental, jurídica, fiscal o financiera de una venta, compra o arrendamiento.</li>
+      <li>Promocionar un inmueble con autorización, atender y calificar prospectos, coordinar visitas y comunicar resultados a la parte propietaria.</li>
+      <li>Preparar, negociar, formalizar y dar seguimiento a ofertas, contratos, trámites notariales, pólizas, financiamientos, pagos, entrega y cierre.</li>
+      <li>Coordinar a participantes necesarios, como propietarios, compradores, arrendadores, arrendatarios, asesores, notarios, valuadores, instituciones financieras o proveedores de pólizas.</li>
+      <li>Cumplir obligaciones contractuales, fiscales, administrativas, de prevención de operaciones con recursos de procedencia ilícita y requerimientos de autoridad.</li>
+      <li>Proteger derechos, atender aclaraciones, reclamaciones, incidentes de seguridad y conservar evidencia de la relación jurídica.</li>
+    </ul>
+
+    <h3>Finalidades secundarias</h3>
+    <p>Con tu consentimiento, podremos dar seguimiento a la calidad del servicio y enviarte información sobre nuevas propiedades o servicios inmobiliarios relacionados. Puedes negarte o retirar tu autorización en cualquier momento escribiendo a <a href={`mailto:${site.emailOficial}?subject=${emailSubject}`}>{site.emailOficial}</a>. Negarte a estas finalidades no afectará la atención de una solicitud u operación en curso.</p>
+  </section>
+
+  <section id="transferencias">
+    <h2>4. Remisiones y transferencias</h2>
+    <p>La información se comparte sólo en la medida necesaria para atender la solicitud, prestar el servicio o cumplir una obligación. Dependiendo de la operación, los destinatarios pueden incluir:</p>
+    <ul>
+      <li>{site.franquicia}, oficinas o asesores participantes del sistema Century 21.</li>
+      <li>Propietarios, compradores, arrendadores, arrendatarios y sus representantes.</li>
+      <li>Notarías, corredurías, abogados, contadores, valuadores, fotógrafos, gestores y proveedores de pólizas o investigación.</li>
+      <li>Instituciones financieras, aseguradoras, plataformas de promoción inmobiliaria y proveedores tecnológicos.</li>
+      <li>Autoridades administrativas, fiscales, judiciales o de prevención de operaciones ilícitas, cuando corresponda.</li>
+    </ul>
+    <p>Estas comunicaciones podrán realizarse sin consentimiento adicional cuando sean necesarias para mantener o cumplir una relación jurídica, celebrar un contrato en tu interés, ejercer o defender un derecho, atender un mandato de autoridad o se actualice otra excepción legal. Cuando la ley exija consentimiento, se solicitará antes de transferir los datos.</p>
+    <p>Si contactas mediante WhatsApp, redes sociales o correo, tus datos también serán tratados por los proveedores de esos servicios conforme a sus propios avisos y condiciones.</p>
+  </section>
+
+  <section id="conservacion">
+    <h2>5. Conservación y seguridad</h2>
+    <p>Los datos se conservarán únicamente durante el tiempo necesario para cumplir las finalidades descritas y, cuando exista una relación u operación, durante los plazos contractuales, fiscales, administrativos o de prescripción aplicables. Después serán bloqueados y eliminados o anonimizados cuando proceda.</p>
+    <p>Se aplican medidas administrativas, físicas y técnicas razonables para evitar daño, pérdida, alteración, destrucción, uso o acceso no autorizado. Ningún sistema es infalible; si una vulneración pudiera afectar significativamente tus derechos, se comunicará conforme a la legislación aplicable.</p>
+  </section>
+
+  <section id="derechos-arco">
+    <h2>6. Derechos ARCO, revocación y limitación</h2>
+    <p>Puedes solicitar acceso a tus datos, su rectificación, cancelación u oponerte a su tratamiento. También puedes revocar tu consentimiento o pedir que se limite el uso o divulgación.</p>
+    <p>Envía tu solicitud a <a href={`mailto:${site.emailOficial}?subject=${emailSubject}`}>{site.emailOficial}</a> con el asunto “Solicitud de derechos ARCO / privacidad” e incluye:</p>
+    <ol>
+      <li>Tu nombre y un medio para recibir la respuesta.</li>
+      <li>Un documento que permita acreditar tu identidad o representación; puedes ocultar datos que no sean necesarios.</li>
+      <li>El derecho que deseas ejercer y una descripción clara de los datos involucrados.</li>
+      <li>La corrección solicitada y el documento que la sustente, cuando se trate de rectificación.</li>
+      <li>Cualquier elemento que ayude a localizar la información.</li>
+    </ol>
+    <p>Se comunicará la determinación dentro de los 20 días siguientes a la recepción de una solicitud completa y, si resulta procedente, se hará efectiva dentro de los 15 días siguientes. Los plazos pueden ampliarse una sola vez cuando las circunstancias lo justifiquen. El ejercicio de estos derechos es gratuito, salvo los costos permitidos de reproducción o envío.</p>
+  </section>
+
+  <section id="tecnologias">
+    <h2>7. Sitio web, cookies y servicios de terceros</h2>
+    <p>Actualmente este sitio no crea cuentas, no procesa pagos, no utiliza herramientas de analítica y no instala cookies propias. Los filtros del catálogo sólo actualizan los parámetros visibles de la dirección web.</p>
+    <p>El alojamiento en Cloudflare Pages y la tipografía servida por Google Fonts pueden procesar datos técnicos, como IP, navegador, dispositivo y fecha de acceso, para entregar y proteger sus servicios. Al seguir enlaces a WhatsApp, Meta, Instagram, Facebook, TikTok, correo o teléfono, el tratamiento posterior depende también del proveedor elegido.</p>
+    <p>El formulario “Análisis de mercado gratuito” no envía información a un servidor propio: prepara un enlace a WhatsApp con el nombre, teléfono y descripción que escribas. Al pulsar enviar, esos datos se incluyen en la comunicación dirigida a WhatsApp para continuar la conversación.</p>
+  </section>
+
+  <section id="menores">
+    <h2>8. Personas menores de edad</h2>
+    <p>El sitio y los servicios están dirigidos a personas adultas. No se recaban intencionalmente datos de menores. Si eres madre, padre o tutor y consideras que se recibieron datos de una persona menor sin autorización, solicita su eliminación mediante el correo de privacidad.</p>
+  </section>
+
+  <section id="cambios">
+    <h2>9. Cambios al aviso y contacto</h2>
+    <p>Las modificaciones a este aviso se publicarán en esta misma dirección y se indicará el mes de actualización. Si el cambio requiere un nuevo consentimiento, se solicitará por el medio de contacto disponible antes de aplicar la nueva finalidad.</p>
+    <div class="legal-callout">
+      <p class="m-0"><strong>Contacto de privacidad</strong><br />{site.nombreLegal}<br />{site.direccionOficina}<br /><a href={`mailto:${site.emailOficial}?subject=${emailSubject}`}>{site.emailOficial}</a> · <a href={`tel:+52${site.telefonos[0].replace(/\s/g, "")}`}>{site.telefonos[0]}</a></p>
+    </div>
+  </section>
+</LegalPage>

@@ -1,0 +1,131 @@
+---
+import LegalPage from "../components/LegalPage.astro";
+import { site } from "../data/site";
+---
+
+<LegalPage
+  title="Términos y Condiciones"
+  eyebrow="Uso del sitio web"
+  description={`Consulta las condiciones de uso del sitio de ${site.nombre} y el alcance de la información y los servicios inmobiliarios publicados.`}
+  intro="Estas condiciones explican el alcance informativo del sitio y distinguen la navegación web de cualquier contrato de intermediación, compraventa o arrendamiento."
+  updated={site.actualizacionLegal}
+>
+  <ol slot="index">
+    <li><a href="#identidad">Identidad y alcance</a></li>
+    <li><a href="#uso">Uso permitido</a></li>
+    <li><a href="#informacion">Información inmobiliaria</a></li>
+    <li><a href="#servicios">Servicios profesionales</a></li>
+    <li><a href="#contratacion">Contratación</a></li>
+    <li><a href="#honorarios">Honorarios y gastos</a></li>
+    <li><a href="#terceros">Terceros y financiamiento</a></li>
+    <li><a href="#propiedad-intelectual">Propiedad intelectual</a></li>
+    <li><a href="#privacidad">Privacidad</a></li>
+    <li><a href="#responsabilidad">Responsabilidad</a></li>
+    <li><a href="#cambios">Cambios</a></li>
+    <li><a href="#contacto">Legislación y contacto</a></li>
+  </ol>
+
+  <p class="legal-lead">
+    Al acceder, navegar o utilizar este sitio reconoces estas condiciones de uso. Si solicitas un servicio inmobiliario, sus términos específicos se establecerán por separado y por escrito.
+  </p>
+
+  <section id="identidad">
+    <h2>1. Identidad y alcance del sitio</h2>
+    <p>El sitio <a href={site.urlBase}>{site.urlBase.replace("https://", "")}</a> presenta los servicios y el portafolio de <strong>{site.nombreLegal}</strong>, quien se identifica comercialmente como {site.nombre}, {site.rol} afiliada a {site.franquicia}.</p>
+    <p>Domicilio de contacto: {site.direccionOficina}. Correo: <a href={`mailto:${site.emailOficial}`}>{site.emailOficial}</a>. Teléfono: <a href={`tel:+52${site.telefonos[0].replace(/\s/g, "")}`}>{site.telefonos[0]}</a>.</p>
+    <p>{site.franquicia}, otras oficinas y los integrantes del sistema Century 21 pueden ser personas u organizaciones independientes. Cada oficina es de propiedad y operación independiente y responde por los actos que realiza por cuenta propia.</p>
+    <p>Estas condiciones regulan únicamente el acceso y uso del sitio. No constituyen por sí mismas un contrato de prestación de servicios, adhesión, exclusividad, compraventa, promesa, arrendamiento, crédito, avalúo ni asesoría legal o fiscal.</p>
+  </section>
+
+  <section id="uso">
+    <h2>2. Uso permitido</h2>
+    <p>Puedes consultar el sitio, compartir enlaces y contactar a Lourdes para solicitar información. Te comprometes a proporcionar datos veraces, utilizar los canales de contacto de buena fe y abstenerte de:</p>
+    <ul>
+      <li>Interferir con la seguridad, disponibilidad o funcionamiento del sitio.</li>
+      <li>Extraer contenido o datos de forma automatizada para crear bases de datos, republicar anuncios o realizar actividades comerciales sin autorización.</li>
+      <li>Suplantar identidades, enviar información ilícita o utilizar los datos de contacto para spam, fraude o acoso.</li>
+      <li>Copiar, modificar o explotar fotografías, textos, marcas o materiales fuera de los usos permitidos por la ley.</li>
+    </ul>
+    <p>Las operaciones inmobiliarias deben celebrarse por personas mayores de edad con capacidad jurídica o por representantes debidamente acreditados.</p>
+  </section>
+
+  <section id="informacion">
+    <h2>3. Información y anuncios inmobiliarios</h2>
+    <p>El contenido busca orientar y facilitar un primer contacto. Las fichas, fotografías, planos, precios, medidas, antigüedad, disponibilidad, ubicación general, régimen, gravámenes, impuestos, servicios, amenidades y demás características provienen de propietarios, documentos, portales o terceros y están sujetos a validación.</p>
+    <p>Salvo que se indique expresamente en un documento firmado:</p>
+    <ul>
+      <li>Un anuncio no constituye oferta vinculante, promesa de disponibilidad ni reserva del inmueble.</li>
+      <li>Los precios, condiciones y disponibilidad pueden cambiar o retirarse sin previo aviso por decisión de la parte propietaria o por el avance de una operación.</li>
+      <li>Las superficies, planos, fotografías y representaciones son ilustrativos y deben comprobarse mediante documentos, inspección, avalúo o medición profesional.</li>
+      <li>La aceptación de créditos, el uso de suelo, la situación jurídica, fiscal o registral y la viabilidad de una operación dependen de la documentación y de las autoridades o instituciones competentes.</li>
+      <li>Las referencias de ubicación se muestran de forma general para proteger la privacidad y seguridad; la dirección exacta sólo se comparte cuando resulte apropiado.</li>
+    </ul>
+    <p>Antes de tomar una decisión o entregar recursos, solicita la documentación aplicable, visita el inmueble y obtén asesoría independiente cuando la naturaleza de la operación lo requiera.</p>
+  </section>
+
+  <section id="servicios">
+    <h2>4. Alcance de los servicios profesionales</h2>
+    <p>De acuerdo con las necesidades de cada cliente y con el instrumento que se firme, el acompañamiento puede comprender:</p>
+    <ul>
+      <li>Análisis comercial y estrategia de precio basada en información disponible del mercado.</li>
+      <li>Orientación inicial y coordinación con especialistas legales, fiscales, notariales, financieros o técnicos.</li>
+      <li>Preparación y difusión publicitaria del inmueble en medios y plataformas seleccionados.</li>
+      <li>Atención de solicitudes, identificación de prospectos, coordinación de visitas y comunicación de resultados.</li>
+      <li>Presentación y seguimiento de ofertas, apoyo en negociaciones y coordinación documental.</li>
+      <li>Acompañamiento durante la formalización, firma, pago, entrega o cierre, dentro del alcance contratado.</li>
+    </ul>
+    <p>Las expresiones “asesoría”, “acompañamiento”, “estrategia”, “prospectos calificados” o similares describen una metodología de trabajo y obligaciones de medios. No garantizan que una propiedad se venda o rente, que se obtenga un precio o financiamiento determinado, que una operación concluya en cierto plazo ni que genere plusvalía o rendimiento.</p>
+    <p>La asesoría jurídica, fiscal, notarial, crediticia, estructural o valuatoria especializada corresponde al profesionista o institución que la emita. Lourdes puede facilitar la coordinación, pero esa participación no sustituye un dictamen profesional independiente.</p>
+  </section>
+
+  <section id="contratacion">
+    <h2>5. Contratación y documentación</h2>
+    <p>La prestación formal del servicio comienza cuando las partes celebran el contrato, autorización o instrumento que corresponda. Ese documento definirá, entre otros aspectos, identidad de las partes, inmueble, modalidad, vigencia, exclusividad, actividades, obligaciones, autorización publicitaria, tratamiento de datos, honorarios, impuestos, gastos, terminación y mecanismos de solución de controversias.</p>
+    <p>La carta de presentación o cualquier explicación comercial es informativa. En caso de diferencia, prevalecerán el contrato firmado, sus anexos y la legislación aplicable.</p>
+    <p>Para verificar y documentar una operación pueden solicitarse escrituras, antecedentes registrales, predial, agua, identificaciones, estado civil, constancia fiscal, comprobantes, permisos y otros documentos pertinentes. La lista definitiva dependerá del tipo de inmueble y operación. Su tratamiento se rige por el <a href="/aviso-de-privacidad/">Aviso de Privacidad</a>.</p>
+  </section>
+
+  <section id="honorarios">
+    <h2>6. Honorarios, impuestos y gastos</h2>
+    <p>La consulta del sitio y el contacto inicial no generan por sí mismos honorarios. El análisis de mercado se ofrece sin costo cuando así se indique, sujeto a disponibilidad, alcance y datos suficientes para realizarlo.</p>
+    <p>Los honorarios, el momento en que se causan, los impuestos y cualquier gasto autorizado se establecerán en el contrato de prestación de servicios aplicable. Ninguna tarifa incluida en una carta, presentación o conversación sustituye lo que las partes acuerden y firmen.</p>
+    <p>Los gastos de terceros —por ejemplo, avalúos, certificados, investigación, notaría, impuestos, derechos, crédito, pólizas, mantenimiento, mudanza o reparaciones— no se consideran incluidos salvo que el contrato lo señale expresamente. Antes de autorizar un gasto debe informarse su concepto y responsable de pago.</p>
+  </section>
+
+  <section id="terceros">
+    <h2>7. Terceros, enlaces y financiamiento</h2>
+    <p>El sitio puede enlazar a WhatsApp, redes sociales, portales inmobiliarios, mapas, instituciones financieras u otros servicios externos. Sus contenidos, disponibilidad, seguridad y políticas dependen de sus respectivos operadores; revisa sus términos antes de utilizarlos.</p>
+    <p>La eventual referencia a créditos, bancos, aseguradoras, pólizas, notarías, valuadores u otros proveedores no implica aprobación garantizada, sociedad, representación ni recomendación exclusiva. Cada tercero evalúa y presta sus servicios bajo sus propias reglas y es responsable de sus determinaciones.</p>
+  </section>
+
+  <section id="propiedad-intelectual">
+    <h2>8. Propiedad intelectual y uso de marca</h2>
+    <p>El diseño, textos, selección, fotografías, gráficos y demás contenido están protegidos por la legislación aplicable y pertenecen a sus titulares o se utilizan con autorización. Century 21, sus logotipos y elementos distintivos son marcas de sus respectivos titulares. Su presencia no concede licencia para reproducirlos.</p>
+    <p>Puedes conservar o compartir un enlace para fines personales e informativos. Cualquier reproducción, publicación, edición o explotación comercial requiere autorización previa del titular correspondiente.</p>
+  </section>
+
+  <section id="privacidad">
+    <h2>9. Privacidad y comunicaciones</h2>
+    <p>El tratamiento de datos personales se explica en el <a href="/aviso-de-privacidad/">Aviso de Privacidad</a>. Al utilizar un formulario o canal externo, verifica la información antes de enviarla y evita compartir documentos sensibles o patrimoniales hasta recibir instrucciones.</p>
+    <p>Puedes pedir que cesen comunicaciones promocionales escribiendo a <a href={`mailto:${site.emailOficial}`}>{site.emailOficial}</a>. Los mensajes necesarios para atender una solicitud, ejecutar un contrato o cumplir una obligación pueden continuar mientras subsista su finalidad.</p>
+  </section>
+
+  <section id="responsabilidad">
+    <h2>10. Disponibilidad y responsabilidad</h2>
+    <p>Se realizan esfuerzos razonables para mantener el sitio disponible, seguro y actualizado, pero pueden existir interrupciones, errores, mantenimiento o cambios de terceros. Cuando detectes información incorrecta, puedes solicitar su revisión mediante los canales de contacto.</p>
+    <p>En la medida permitida por la ley, no se responde por decisiones tomadas únicamente con información preliminar no verificada, por cambios atribuibles a propietarios o terceros, ni por fallas de servicios externos. Esta disposición no limita derechos irrenunciables de consumidores ni excluye responsabilidades que legalmente no puedan limitarse.</p>
+  </section>
+
+  <section id="cambios">
+    <h2>11. Cambios a estas condiciones</h2>
+    <p>Las condiciones pueden actualizarse para reflejar modificaciones del sitio, los servicios o la legislación. La versión aplicable al uso del sitio será la publicada en esta página, identificada por su mes de actualización. Un cambio del sitio no modifica por sí mismo un contrato previamente firmado.</p>
+  </section>
+
+  <section id="contacto">
+    <h2>12. Legislación, derechos y contacto</h2>
+    <p>Estas condiciones se interpretan conforme a las leyes aplicables en México. Cualquier diferencia se procurará resolver primero mediante comunicación directa y, si no es posible, ante las autoridades o tribunales competentes de la Ciudad de México, sin perjuicio de los derechos que correspondan a las personas consumidoras ante la Procuraduría Federal del Consumidor u otra autoridad competente.</p>
+    <div class="legal-callout">
+      <p class="m-0"><strong>Contacto</strong><br />{site.nombreLegal}<br />{site.direccionOficina}<br /><a href={`mailto:${site.emailOficial}`}>{site.emailOficial}</a> · <a href={`tel:+52${site.telefonos[0].replace(/\s/g, "")}`}>{site.telefonos[0]}</a></p>
+    </div>
+  </section>
+</LegalPage>
